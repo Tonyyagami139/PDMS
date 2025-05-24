@@ -1,0 +1,6 @@
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\bin\Debug\Common.dll
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\bin\Debug\Common.pdb
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\obj\Debug\Common.dll
+C:\Users\tianx\Desktop\Settings\Solutions\PDMS\Common\obj\Debug\Common.pdb

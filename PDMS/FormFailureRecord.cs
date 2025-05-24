@@ -1,0 +1,685 @@
+﻿using Common;
+using Dal;
+using PDMS.Facade;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net.Mail;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace PDMS
+{
+    public partial class FormFailureRecord : Form
+    {
+        FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
+        public List<FailureRecord> FailureRecordList { get; set; }
+        //Current Infos
+        public string CurrentStatus { get; set; }
+        public string CurrentPictureFileName { get; set; }
+        public FailureRecord SelectedFailureRecord { get; set; }
+
+        public List<FailureRecord> FilteredRecords { get; set; }
+
+        //Lists for combobox
+        public List<string> FailureModeList { get; set; }
+        public List<string> ProcessesList { get; set; }
+        public List<string> ProductFamilyList { get; set; }
+
+        //public List<string> ProductNameList { get; set; } // too many, remove it for now 
+
+
+        public FormFacade facade { get; set; }
+        public FormFailureRecord()
+        {
+            InitializeComponent();
+        }
+
+        private void FormFailureRecord_Load(object sender, EventArgs e)
+        {
+            FormInitial();
+            ResponseDataGridViewHeaderSearch();
+        }
+
+        private void ResponseDataGridViewHeaderSearch()
+        {
+            System.Windows.Forms.TextBox filterBox = new System.Windows.Forms.TextBox();
+            filterBox.Visible = false;
+            filterBox.Width = 120;
+            // 失去焦点自动隐藏
+            filterBox.Leave += (s, e) => filterBox.Visible = false;
+            // 按回车时应用筛选
+            filterBox.TextChanged += (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(filterBox.Text.Trim()))
+                {
+                    ApplyFilter(dataGridView_failureRecord, filterBox.Tag as int?, filterBox.Text);
+                    //filterBox.Visible = false;
+                }
+             };
+            // 将TextBox控件添加到DataGridView控件层级中
+            dataGridView_failureRecord.Controls.Add(filterBox);
+            // 3. 列头点击事件
+            dataGridView_failureRecord.CellMouseClick += (s, e) =>
+            {
+                // 判断是否点击的是列头单元格
+                if (e.RowIndex == -1 && e.ColumnIndex >= 0)
+                {
+                    // 获取当前列头单元格的屏幕区域
+                    var headerRect = dataGridView_failureRecord.GetCellDisplayRectangle(e.ColumnIndex, -1, true);
+                    // 计算放大镜图标实际的显示区域（和上面CellPainting一致）
+                    var iconRect = new Rectangle(headerRect.Right - 20, headerRect.Top + 5, 16, 16);
+                    // 当前鼠标点击位置（DataGridView控件坐标系下）
+                    var mousePos = dataGridView_failureRecord.PointToClient(Cursor.Position);
+                    // 判断是否点击了图标区域
+                    if (iconRect.Contains(mousePos))
+                    {
+                        // 记录当前要筛选的列索引
+                        filterBox.Tag = e.ColumnIndex;
+                        //filterBox.Location = new Point(headerRect.Right - filterBox.Width, headerRect.Bottom);
+                        filterBox.Location = new Point(headerRect.Left,headerRect.Bottom);
+                        filterBox.Text = "";
+                        filterBox.Visible = true;
+                        filterBox.Focus();
+                    }
+                }
+            };
+
+        }
+        private void ApplyFilter(DataGridView dgv, int? colIdx, string filterText)
+        {
+            // 获取要筛选的列名
+            var colName = dgv.Columns[colIdx.Value].DataPropertyName;
+
+            // 如果未输入内容则清除筛选
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                
+            }
+            else
+            {
+                //var currentList=FilteredRecords==null?FailureRecordList:FilteredRecords.ToList();
+                FilteredRecords = FailureRecordList.Where(fr =>
+                    fr.GetType().GetProperty(colName).GetValue(fr, null).ToString().IndexOf(filterText, StringComparison.OrdinalIgnoreCase) >= 0
+                ).ToList();
+                dataGridView_failureRecord.DataSource = null;
+                dataGridView_failureRecord.DataSource = FilteredRecords;
+            }
+        }
+
+        private void FormInitial()
+        {
+            //增加列筛选图标
+            dataGridView_failureRecord.CellPainting += (s, e) =>
+            {
+                if (e.RowIndex == -1 && e.ColumnIndex >= 0) // 只处理Header
+                {
+                    e.PaintBackground(e.ClipBounds, true);
+                    e.PaintContent(e.ClipBounds);
+
+                    // 画小图标（你也可以用e.Graphics.DrawImage画图片）
+                    var iconRect = new Rectangle(e.CellBounds.Right - 20, e.CellBounds.Top + 5, 16, 16);
+
+                    TextRenderer.DrawText(e.Graphics, "🔍", e.CellStyle.Font, iconRect, Color.Gray);
+
+                    e.Handled = true;
+                }
+            };
+
+
+            facade = new FormFacade(this);
+            try
+            {
+                FailureModeList = facade.GetFailureModes();
+                ProcessesList = facade.GetProcesses();
+                ProductFamilyList = facade.GetProductFamilies();
+            }
+            catch
+            {
+                MessageBox.Show("连接服务器\\192.168.31.223失败。");
+                this.Close();
+            }
+            FailureRecordList = new List<FailureRecord>();
+            dataGridView_failureRecord.AutoGenerateColumns = false;
+            radioButton_FRpass.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRfail.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRhold.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRrework.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRquarantine.CheckedChanged += RadioButton_CheckedChanged;
+            CurrentStatus = string.Empty;
+            //status access level should be [1,3]
+            if (Global.UserLevel < 0 || Global.UserLevel > 3)
+            {
+                GroupBox_FinalResult.Enabled = false;
+                bt_FRdelete.Enabled = false;
+            }
+
+            Image image = Image.FromFile(Global.LogoPicture);
+            pictureBox_FailureRecord.Image = image;
+
+            ClearField();
+
+            FailureRecordList = dal.GetFailureRecords();
+            dataGridView_failureRecord.DataSource = FailureRecordList;
+        }
+
+        private void ClearField()
+        {
+            tb_FRserialNumber.Text = "";
+
+            tb_productName.Text = "";
+            tb_FRcomment.Text = "";
+            cb_FRfailureMode.Items.Clear();
+            cb_FRproductFamily.Items.Clear();
+            cb_FRworkStep.Items.Clear();
+            cb_FRfailureMode.Text = "";
+            cb_FRproductFamily.Text = "";
+            cb_FRworkStep.Text = "";
+            radioButton_FRpass.Checked = false;
+            radioButton_FRfail.Checked = false;
+            radioButton_FRhold.Checked = false;
+            radioButton_FRrework.Checked = false;
+            radioButton_FRquarantine.Checked = false;
+            cb_FRworkStep.Items.AddRange(ProcessesList.ToArray());
+            cb_FRproductFamily.Items.AddRange(ProductFamilyList.ToArray());
+            cb_FRfailureMode.Items.AddRange(FailureModeList.ToArray());
+
+            SelectedFailureRecord = null;
+            Image image = Image.FromFile(Global.LogoPicture);
+            pictureBox_FailureRecord.Image = image;
+            bt_FRuploadPicture.BackColor = Color.White;
+
+        }
+
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.RadioButton rb = sender as System.Windows.Forms.RadioButton;
+            if (rb != null && rb.Checked)
+            {
+                CurrentStatus = rb.Text;
+            }
+        }
+
+        private void bt_FRuploadPicture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            string fn = ofd.FileName.ToLower();
+            if (string.IsNullOrEmpty(fn))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:照片没有被加载");
+                return;
+            }
+            if (!fn.EndsWith(".jpg") && !fn.EndsWith(".png"))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:照片格式需为jpg或者png");
+                return;
+            }
+            byte[] FileData = File.ReadAllBytes(fn);
+            if (FileData.LongLength == 0)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:空文件");
+                return;
+            }
+            else if (FileData.LongLength > 20971520 / 2)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:照片需小于10M");
+                return;
+            }
+            pictureBox_FailureRecord.Image = Image.FromFile(fn);
+            string PicSavePath = Path.Combine(Global.FailurePictureRootPath, Guid.NewGuid().ToString() + Path.GetExtension(fn));
+            File.Copy(fn, PicSavePath);
+            CurrentPictureFileName = PicSavePath;
+            bt_FRuploadPicture.BackColor = Color.Green;
+        }
+
+        private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lb_finalResult_Click(object sender, EventArgs e)
+        {
+            radioButton_FRpass.Checked = false;
+            radioButton_FRfail.Checked = false;
+            radioButton_FRhold.Checked = false;
+            radioButton_FRrework.Checked = false;
+            radioButton_FRquarantine.Checked = false;
+            CurrentStatus = "";
+        }
+
+        private void bt_FRdelete_Click(object sender, EventArgs e)
+        {
+            if (SelectedFailureRecord == null) facade.FailureRecordShowLog(tb_FRlog, "请选择要删除的记录。");
+            DialogResult result = MessageBox.Show("确定要删除这条记录吗？", "确认删除", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            
+            // 检查用户的选择
+            if (result == DialogResult.Yes)
+            {
+                SelectedFailureRecord.DeleteUserName = Global.UserName;
+                dal.DeleteFailureRecord(SelectedFailureRecord);
+                bt_FRfresh.PerformClick();
+                facade.FailureRecordShowLog(tb_FRlog, "删除成功。");
+            }
+            else
+            {
+                // 用户选择了“否”，取消删除操作
+                facade.FailureRecordShowLog(tb_FRlog, "删除操作已取消。");
+            }
+        }
+
+        private void dataGridView_failureRecord_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 检查双击的行索引是否有效
+            if (e.RowIndex < 0) return;
+            // 获取双击的行
+            DataGridViewRow row = dataGridView_failureRecord.Rows[e.RowIndex];
+            // 假设 ID 列的名称为 "Id"
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+
+            FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
+            var fr = dal.GetFailureRecord(id);
+            FailureRecordInfo2Form(fr);
+        }
+
+        private void dataGridView_failureRecord_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView_failureRecord.Columns[e.ColumnIndex].Name == "Status")
+            {
+                string status = e.Value.ToString();
+                switch (status)
+                {
+                    case "Pass":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Green;
+                        break;
+                    case "Fail":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Red;
+                        break;
+                    case "Hold":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Orange;
+                        break;
+                    case "Rework":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.OrangeRed;
+                        break;
+                    case "Quarantine":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Purple;
+                        break;
+                    default:
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.White;
+                        break;
+                }
+            }
+        }
+
+        private void bt_FRfresh_Click(object sender, EventArgs e)
+        {
+            ClearField();
+            FailureRecordList = dal.GetFailureRecords();
+            dataGridView_failureRecord.DataSource = FailureRecordList;
+        }
+
+        private void bt_FRadd_Click(object sender, EventArgs e)
+        {
+            var failureRecord = FormInfo2FailureRecord();
+            if (string.IsNullOrEmpty(failureRecord.SerialNumber))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(failureRecord.ProductName))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品名称不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(failureRecord.WorkStepProcessName))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:工序不能为空");
+                return;
+            }
+            if (!string.IsNullOrEmpty(failureRecord.PictureFileName))
+            {
+                if (!File.Exists(failureRecord.PictureFileName))
+                {
+                    facade.FailureRecordShowLog(tb_FRlog, "错误:照片不存在");
+                    return;
+                }
+            }
+            else
+            {
+                failureRecord.PictureFileName = Global.DefaultPicturePath;
+            }
+            if (string.IsNullOrEmpty(failureRecord.FailureMode))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:失效模式不能为空");
+                return;
+            }
+            if (!facade.IsFailureModeValidate(failureRecord.FailureMode))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:失效模式未定义");
+                return;
+            }
+
+            if (dal.AddFailureRecord(failureRecord))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "增加成功。");
+                bt_FRfresh.PerformClick();
+            }
+            else
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "增加失败。");
+            }
+
+
+        }
+
+        private void FailureRecordInfo2Form(FailureRecord fr)
+        {
+            SelectedFailureRecord = fr;
+            tb_FRserialNumber.Text = SelectedFailureRecord.SerialNumber;
+            tb_productName.Text = SelectedFailureRecord.ProductName;
+            cb_FRproductFamily.Text = SelectedFailureRecord.ProductFamily;
+            cb_FRworkStep.Text = SelectedFailureRecord.WorkStepProcessName;
+            cb_FRfailureMode.Text = SelectedFailureRecord.FailureMode;
+            tb_FRcomment.Text = SelectedFailureRecord.Comment;
+            tb_FRlog.Text = "";
+            pictureBox_FailureRecord.Image = Image.FromFile(SelectedFailureRecord.PictureFileName);
+
+            CurrentPictureFileName = SelectedFailureRecord.PictureFileName;
+            CurrentStatus = SelectedFailureRecord.Status;
+
+            switch (CurrentStatus)
+            {
+                case "Pass":
+                    radioButton_FRpass.Checked = true;
+                    break;
+                case "Fail":
+                    radioButton_FRfail.Checked = true;
+                    break;
+                case "Hold":
+                    radioButton_FRhold.Checked = true;
+                    break;
+                case "Rework":
+                    radioButton_FRrework.Checked = true;
+                    break;
+                case "Quarantine":
+                    radioButton_FRquarantine.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private FailureRecord FormInfo2FailureRecord()
+        {
+            FailureRecord fr = new FailureRecord();
+            fr.PictureFileName = CurrentPictureFileName;
+            fr.Status = radioButton_FRpass.Checked ? "Pass"
+                        : radioButton_FRfail.Checked ? "Fail"
+                        : radioButton_FRhold.Checked ? "Hold"
+                        : radioButton_FRrework.Checked ? "Rework"
+                        : radioButton_FRquarantine.Checked ? "Quarantine"
+                        : "";
+            fr.SerialNumber = tb_FRserialNumber.Text;
+            fr.ProductName = tb_productName.Text;
+            fr.ProductFamily = cb_FRproductFamily.Text;
+            fr.WorkStepProcessName = cb_FRworkStep.Text;
+            fr.FailureMode = cb_FRfailureMode.Text;
+            fr.Comment = tb_FRcomment.Text;
+            fr.CreateUserName = Global.UserName;
+            fr.CreateTime = DateTime.Now;
+            fr.ModifyUserName = Global.UserName;
+            fr.ModifyTime = DateTime.Now;
+            fr.DeleteUserName = Global.UserName;
+            fr.DeleteTime = DateTime.Now;
+            return fr;
+        }
+
+        private void tb_FRserialNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void tb_productName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void cb_FRproductFamily_TextChanged(object sender, EventArgs e)
+        {
+
+            string text = cb_FRproductFamily.Text;
+            int selStart = cb_FRproductFamily.SelectionStart;
+
+            // 筛选（模糊包含）
+            var filtered = ProductFamilyList
+                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            cb_FRproductFamily.TextChanged -= cb_FRproductFamily_TextChanged;
+            cb_FRproductFamily.Items.Clear();
+            cb_FRproductFamily.Items.AddRange(filtered.ToArray());
+            cb_FRproductFamily.Text = text;
+            cb_FRproductFamily.SelectionStart = selStart;
+            cb_FRproductFamily.TextChanged += cb_FRproductFamily_TextChanged;
+
+        }
+ 
+
+        private void cb_FRworkStep_TextChanged(object sender, EventArgs e)
+        {
+
+            // 记录当前输入内容与光标位置，便于刷新后恢复
+            string text = cb_FRworkStep.Text;
+            int selStart = cb_FRworkStep.SelectionStart;
+
+            // 根据当前输入，筛选原始列表（模糊匹配，包含即可，不区分大小写）
+            var filtered = ProcessesList
+                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            // 防止修改Items时递归触发TextChanged，先移除事件
+            cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
+
+            // 用筛选结果替换下拉列表
+            cb_FRworkStep.Items.Clear();
+            cb_FRworkStep.Items.AddRange(filtered.ToArray());
+
+            // 还原输入内容和光标位置（不还原会导致输入卡顿或乱跳）
+            cb_FRworkStep.Text = text;
+            cb_FRworkStep.SelectionStart = selStart;
+
+            // 恢复事件
+            cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
+
+ 
+        }
+
+        private void bt_FRdownload_Click(object sender, EventArgs e)
+        {
+            if (FailureRecordList.Count < 1)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "没有可下载的数据。");
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Data Files|*.xlsx";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string FilePath = sfd.FileName;
+                    var report = facade.GetExcelReportMemory(FailureRecordList);
+                    File.WriteAllBytes(FilePath, report);
+                    facade.FailureRecordShowLog(tb_FRlog, "下载完成。");
+                }
+                catch (Exception ex)
+                {
+                    facade.FailureRecordShowLog(tb_FRlog, "文件下载失败:" + ex.Message);
+                }
+            }
+        }
+
+        private void bt_FRsearch_Click(object sender, EventArgs e)
+        {
+            string sn = tb_FRserialNumber.Text;
+            string productFamily = cb_FRproductFamily.Text.Trim();
+            string productName = tb_productName.Text.Trim();
+            string workStep = cb_FRworkStep.Text.Trim();
+            FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
+            var recordList = dal.GetFailureRecordsByFuzzy(sn);
+
+            // 筛选
+            var filtered = recordList.Where(fr =>
+                // ProductFamily 筛选（为空不限制，不为空就做模糊包含，忽略大小写）
+                (string.IsNullOrEmpty(productFamily) ||
+                 (fr.ProductFamily ?? "").IndexOf(productFamily, StringComparison.OrdinalIgnoreCase) >= 0)
+                &&
+                // ProductName 筛选
+                (string.IsNullOrEmpty(productName) ||
+                 (fr.ProductName ?? "").IndexOf(productName, StringComparison.OrdinalIgnoreCase) >= 0)
+                &&
+                // WorkStepProcessName 筛选
+                (string.IsNullOrEmpty(workStep) ||
+                 (fr.WorkStepProcessName ?? "").IndexOf(workStep, StringComparison.OrdinalIgnoreCase) >= 0)
+            ).ToList();
+
+            FailureRecordList = filtered;
+            dataGridView_failureRecord.DataSource = FailureRecordList;
+        }
+
+        private void bt_FRedit_Click(object sender, EventArgs e)
+        {
+            string sn = tb_FRserialNumber.Text;
+
+            if (string.IsNullOrEmpty(sn))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不能为空");
+                return;
+            }
+            if (!dal.IsSerialNumberExist(sn))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不存在，需要新增。");
+                return;
+            }
+            FailureRecord tempFailureRecord = dal.GetFailureRecordBySn(sn);
+            SelectedFailureRecord = new FailureRecord();
+            SelectedFailureRecord.Id = tempFailureRecord.Id;
+            SelectedFailureRecord.SerialNumber = tb_FRserialNumber.Text.Trim();
+            SelectedFailureRecord.CreateTime = tempFailureRecord.CreateTime;
+            SelectedFailureRecord.CreateUserName = tempFailureRecord.CreateUserName;
+            SelectedFailureRecord.ProductFamily = cb_FRproductFamily.Text.Trim();
+            SelectedFailureRecord.ProductName = tb_productName.Text.Trim();
+            SelectedFailureRecord.WorkStepProcessName = cb_FRworkStep.Text.Trim();
+            SelectedFailureRecord.Comment = tb_FRcomment.Text.Replace("\t", " ").Replace("\r", " ").Replace("\n", " ");
+            SelectedFailureRecord.FailureMode = cb_FRfailureMode.Text;
+            SelectedFailureRecord.ModifyUserName = Global.UserName;
+            SelectedFailureRecord.ModifyTime = DateTime.Now;
+            SelectedFailureRecord.Status = radioButton_FRpass.Checked ? "Pass" : radioButton_FRfail.Checked ? "Fail" : radioButton_FRhold.Checked ? "Hold" : radioButton_FRrework.Checked ? "Rework" : radioButton_FRquarantine.Checked? "Quarantine":"";
+            SelectedFailureRecord.PictureFileName = CurrentPictureFileName??Global.DefaultPicturePath;
+            if (dal.UpdateFailureRecord(SelectedFailureRecord))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "更新成功。");
+                var product = SelectedFailureRecord.ProductName;
+                bt_FRfresh.PerformClick();
+
+                PerformSearchProductAfterEdit(product);
+
+            }
+            else 
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "更新失败。");
+            }
+        }
+
+        private void PerformSearchProductAfterEdit(string product)
+        {
+            tb_productName.Text = product;
+            bt_FRsearch.PerformClick();
+        }
+
+        private void HandleDorpdown(object sender, EventArgs e)
+        {
+            if (sender is System.Windows.Forms.ComboBox)
+            {
+                int dropWidth = SystemInformation.VerticalScrollBarWidth;
+                var cb = (System.Windows.Forms.ComboBox)sender;
+                Rectangle textRect = new Rectangle(0, 0, cb.Width - dropWidth, cb.Height);
+                var em = (MouseEventArgs)e;
+                if (textRect.Contains(em.Location))
+                {
+                    cb.DroppedDown = !cb.DroppedDown;
+                }
+            }
+        }
+
+        private void cb_FRfailureMode_TextChanged(object sender, EventArgs e)
+        {
+            string text = cb_FRfailureMode.Text;
+            int selStart = cb_FRfailureMode.SelectionStart;
+
+            // 筛选（模糊包含）
+            var filtered = FailureModeList
+                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            cb_FRfailureMode.TextChanged -= cb_FRfailureMode_TextChanged;
+            cb_FRfailureMode.Items.Clear();
+            cb_FRfailureMode.Items.AddRange(filtered.ToArray());
+            cb_FRfailureMode.Text = text;
+            cb_FRfailureMode.SelectionStart = selStart;
+            cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
+        }
+
+        private void dataGridView_failureRecord_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // 获取点击的列
+            DataGridViewColumn column = dataGridView_failureRecord.Columns[e.ColumnIndex];
+            var columnName = column.Name;
+            // 获取当前排序方向
+            if (facade.direction == ListSortDirection.Ascending)
+            {
+                facade.direction = ListSortDirection.Descending;
+            }
+            else
+            {
+                facade.direction = ListSortDirection.Ascending;
+            }
+
+            // 根据列名和排序方向对 FailureRecordList 进行排序
+            if (facade.direction == ListSortDirection.Ascending)
+            {
+                FailureRecordList = FailureRecordList.OrderBy(record => GetPropertyValue(record, columnName)).ToList();
+            }
+            else
+            {
+                FailureRecordList = FailureRecordList.OrderByDescending(record => GetPropertyValue(record, columnName)).ToList();
+            }
+
+            // 更新 DataGridView 的数据源
+            dataGridView_failureRecord.DataSource = null;
+            dataGridView_failureRecord.DataSource = FailureRecordList;
+        }
+
+        private object GetPropertyValue(object obj, string propertyName)
+        {
+            return obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+        }
+    }
+}
