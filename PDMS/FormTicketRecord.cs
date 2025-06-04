@@ -12,6 +12,7 @@ namespace PDMS
     {
         TicketDal dal = new TicketDal(Global.DbSettingSqlserver);
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
+        private string CurrentStatus = string.Empty;
         public FormTicketRecord()
         {
             InitializeComponent();
@@ -23,6 +24,11 @@ namespace PDMS
             RefreshTickets();
             dataGridView_tickets.ColumnHeaderMouseClick += dataGridView_tickets_ColumnHeaderMouseClick;
             dataGridView_tickets.CellClick += dataGridView_tickets_CellClick;
+            radioButton_pending.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_inProgress.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_finished.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_pending.Checked = true;
+            CurrentStatus = radioButton_pending.Text;
         }
 
         private void RefreshTickets()
@@ -36,7 +42,24 @@ namespace PDMS
             Ticket ticket = (Ticket)dataGridView_tickets.CurrentRow.DataBoundItem;
             tb_title.Text = ticket.Title;
             tb_description.Text = ticket.Description;
-            tb_status.Text = ticket.Status;
+            CurrentStatus = ticket.Status;
+            switch (ticket.Status)
+            {
+                case "Pending":
+                    radioButton_pending.Checked = true;
+                    break;
+                case "InProgress":
+                    radioButton_inProgress.Checked = true;
+                    break;
+                case "Finished":
+                    radioButton_finished.Checked = true;
+                    break;
+                default:
+                    radioButton_pending.Checked = false;
+                    radioButton_inProgress.Checked = false;
+                    radioButton_finished.Checked = false;
+                    break;
+            }
         }
 
         private void SearchTickets()
@@ -50,7 +73,7 @@ namespace PDMS
             {
                 Title = tb_title.Text,
                 Description = tb_description.Text,
-                Status = tb_status.Text,
+                Status = CurrentStatus,
                 CreateUserName = Global.UserName,
                 CreateTime = DateTime.Now,
                 ModifyUserName = Global.UserName,
@@ -66,7 +89,7 @@ namespace PDMS
             Ticket ticket = (Ticket)dataGridView_tickets.CurrentRow.DataBoundItem;
             ticket.Title = tb_title.Text;
             ticket.Description = tb_description.Text;
-            ticket.Status = tb_status.Text;
+            ticket.Status = CurrentStatus;
             ticket.ModifyUserName = Global.UserName;
             ticket.ModifyTime = DateTime.Now;
             dal.UpdateTicket(ticket);
@@ -77,7 +100,7 @@ namespace PDMS
         {
             if (dataGridView_tickets.CurrentRow == null) return;
             Ticket ticket = (Ticket)dataGridView_tickets.CurrentRow.DataBoundItem;
-            dal.DeleteTicket(ticket.Id);
+            dal.DeleteTicket(ticket.Id, Global.UserName);
             RefreshTickets();
         }
 
@@ -112,6 +135,15 @@ namespace PDMS
                 sortDirection = ListSortDirection.Ascending;
             }
             dataGridView_tickets.DataSource = list;
+        }
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Checked)
+            {
+                CurrentStatus = rb.Text;
+            }
         }
     }
 }

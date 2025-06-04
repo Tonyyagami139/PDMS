@@ -39,11 +39,11 @@ namespace Dal
             return true;
         }
 
-        public bool DeleteTicket(int id)
+        public bool DeleteTicket(int id, string modifyUserName)
         {
             try
             {
-                TicketBll.DeleteTicket(id);
+                TicketBll.DeleteTicket(id, modifyUserName);
             }
             catch (Exception)
             {

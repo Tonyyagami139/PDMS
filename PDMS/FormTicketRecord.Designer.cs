@@ -20,7 +20,9 @@ namespace PDMS
             this.bt_update = new System.Windows.Forms.Button();
             this.bt_add = new System.Windows.Forms.Button();
             this.bt_search = new System.Windows.Forms.Button();
-            this.tb_status = new System.Windows.Forms.TextBox();
+            this.radioButton_pending = new System.Windows.Forms.RadioButton();
+            this.radioButton_inProgress = new System.Windows.Forms.RadioButton();
+            this.radioButton_finished = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_description = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,7 +73,9 @@ namespace PDMS
             this.groupBox1.Controls.Add(this.bt_search);
             this.groupBox1.Controls.Add(this.tb_search);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.tb_status);
+            this.groupBox1.Controls.Add(this.radioButton_finished);
+            this.groupBox1.Controls.Add(this.radioButton_inProgress);
+            this.groupBox1.Controls.Add(this.radioButton_pending);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tb_description);
             this.groupBox1.Controls.Add(this.label2);
@@ -162,12 +166,38 @@ namespace PDMS
             this.label4.TabIndex = 7;
             this.label4.Text = "Search";
             //
-            // tb_status
-            // 
-            this.tb_status.Location = new System.Drawing.Point(103, 116);
-            this.tb_status.Name = "tb_status";
-            this.tb_status.Size = new System.Drawing.Size(223, 25);
-            this.tb_status.TabIndex = 5;
+            // radioButton_pending
+            //
+            this.radioButton_pending.AutoSize = true;
+            this.radioButton_pending.Location = new System.Drawing.Point(103, 116);
+            this.radioButton_pending.Name = "radioButton_pending";
+            this.radioButton_pending.Size = new System.Drawing.Size(78, 19);
+            this.radioButton_pending.TabIndex = 5;
+            this.radioButton_pending.TabStop = true;
+            this.radioButton_pending.Text = "Pending";
+            this.radioButton_pending.UseVisualStyleBackColor = true;
+            //
+            // radioButton_inProgress
+            //
+            this.radioButton_inProgress.AutoSize = true;
+            this.radioButton_inProgress.Location = new System.Drawing.Point(187, 116);
+            this.radioButton_inProgress.Name = "radioButton_inProgress";
+            this.radioButton_inProgress.Size = new System.Drawing.Size(97, 19);
+            this.radioButton_inProgress.TabIndex = 6;
+            this.radioButton_inProgress.TabStop = true;
+            this.radioButton_inProgress.Text = "InProgress";
+            this.radioButton_inProgress.UseVisualStyleBackColor = true;
+            //
+            // radioButton_finished
+            //
+            this.radioButton_finished.AutoSize = true;
+            this.radioButton_finished.Location = new System.Drawing.Point(290, 116);
+            this.radioButton_finished.Name = "radioButton_finished";
+            this.radioButton_finished.Size = new System.Drawing.Size(78, 19);
+            this.radioButton_finished.TabIndex = 7;
+            this.radioButton_finished.TabStop = true;
+            this.radioButton_finished.Text = "Finished";
+            this.radioButton_finished.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -235,7 +265,9 @@ namespace PDMS
         private System.Windows.Forms.Button bt_update;
         private System.Windows.Forms.Button bt_add;
         private System.Windows.Forms.Button bt_search;
-        private System.Windows.Forms.TextBox tb_status;
+        private System.Windows.Forms.RadioButton radioButton_pending;
+        private System.Windows.Forms.RadioButton radioButton_inProgress;
+        private System.Windows.Forms.RadioButton radioButton_finished;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Label label2;
