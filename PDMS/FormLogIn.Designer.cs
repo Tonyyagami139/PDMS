@@ -38,6 +38,7 @@
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关闭ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.失效记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.工单记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -100,7 +101,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.设置ToolStripMenuItem,
-            this.失效记录ToolStripMenuItem});
+            this.失效记录ToolStripMenuItem,
+            this.工单记录ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(722, 28);
@@ -128,9 +130,16 @@
             this.失效记录ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.失效记录ToolStripMenuItem.Text = "失效记录";
             this.失效记录ToolStripMenuItem.Click += new System.EventHandler(this.失效记录ToolStripMenuItem_Click);
-            // 
+            //
+            // 工单记录ToolStripMenuItem
+            //
+            this.工单记录ToolStripMenuItem.Name = "工单记录ToolStripMenuItem";
+            this.工单记录ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.工单记录ToolStripMenuItem.Text = "工单记录";
+            this.工单记录ToolStripMenuItem.Click += new System.EventHandler(this.工单记录ToolStripMenuItem_Click);
+            //
             // groupBox1
-            // 
+            //
             this.groupBox1.Controls.Add(this.tb_userName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_passWord);
@@ -178,6 +187,7 @@
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关闭ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 失效记录ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 工单记录ToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }
