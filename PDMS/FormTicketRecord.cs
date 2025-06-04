@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Linq;
+using System.Drawing;
 
 namespace PDMS
 {
@@ -24,9 +25,11 @@ namespace PDMS
             RefreshTickets();
             dataGridView_tickets.ColumnHeaderMouseClick += dataGridView_tickets_ColumnHeaderMouseClick;
             dataGridView_tickets.CellClick += dataGridView_tickets_CellClick;
+            dataGridView_tickets.CellFormatting += dataGridView_tickets_CellFormatting;
             radioButton_pending.CheckedChanged += RadioButton_CheckedChanged;
             radioButton_inProgress.CheckedChanged += RadioButton_CheckedChanged;
             radioButton_finished.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_created.CheckedChanged += RadioButton_CheckedChanged;
             radioButton_pending.Checked = true;
             CurrentStatus = radioButton_pending.Text;
         }
@@ -54,10 +57,14 @@ namespace PDMS
                 case "Finished":
                     radioButton_finished.Checked = true;
                     break;
+                case "Created":
+                    radioButton_created.Checked = true;
+                    break;
                 default:
                     radioButton_pending.Checked = false;
                     radioButton_inProgress.Checked = false;
                     radioButton_finished.Checked = false;
+                    radioButton_created.Checked = false;
                     break;
             }
         }
@@ -112,6 +119,29 @@ namespace PDMS
         private void dataGridView_tickets_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_tickets_SelectionChanged(sender, e);
+        }
+
+        private void dataGridView_tickets_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView_tickets.Columns[e.ColumnIndex].Name == "Status")
+            {
+                string status = e.Value.ToString();
+                switch (status)
+                {
+                    case "Created":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Red;
+                        break;
+                    case "Finished":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Green;
+                        break;
+                    default:
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Goldenrod;
+                        break;
+                }
+            }
         }
 
         private void bt_search_Click(object sender, EventArgs e)
