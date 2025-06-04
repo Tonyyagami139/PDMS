@@ -31,6 +31,15 @@ namespace PDMS
             this.label1 = new System.Windows.Forms.Label();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cb_priority = new System.Windows.Forms.ComboBox();
+            this.cb_status = new System.Windows.Forms.ComboBox();
+            this.tb_assignee = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_attachments = new System.Windows.Forms.TextBox();
+            this.bt_browse = new System.Windows.Forms.Button();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).BeginInit();
@@ -75,6 +84,15 @@ namespace PDMS
             this.groupBox1.Controls.Add(this.bt_search);
             this.groupBox1.Controls.Add(this.tb_search);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.cb_status);
+            this.groupBox1.Controls.Add(this.cb_priority);
+            this.groupBox1.Controls.Add(this.tb_assignee);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.bt_browse);
+            this.groupBox1.Controls.Add(this.tb_attachments);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.radioButton_created);
             this.groupBox1.Controls.Add(this.radioButton_finished);
             this.groupBox1.Controls.Add(this.radioButton_inProgress);
@@ -168,6 +186,99 @@ namespace PDMS
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 7;
             this.label4.Text = "Search";
+            //
+            // label5
+            //
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 150);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Priority";
+            //
+            // label6
+            //
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(320, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Assignee";
+            //
+            // label7
+            //
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(320, 116);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Status";
+            //
+            // cb_priority
+            //
+            this.cb_priority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_priority.FormattingEnabled = true;
+            this.cb_priority.Items.AddRange(new object[] {
+            "Low",
+            "Medium",
+            "High"});
+            this.cb_priority.Location = new System.Drawing.Point(103, 147);
+            this.cb_priority.Name = "cb_priority";
+            this.cb_priority.Size = new System.Drawing.Size(223, 23);
+            this.cb_priority.TabIndex = 11;
+            //
+            // cb_status
+            //
+            this.cb_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_status.FormattingEnabled = true;
+            this.cb_status.Items.AddRange(new object[] {
+            "New",
+            "InProgress",
+            "Finished",
+            "Closed"});
+            this.cb_status.Location = new System.Drawing.Point(371, 113);
+            this.cb_status.Name = "cb_status";
+            this.cb_status.Size = new System.Drawing.Size(223, 23);
+            this.cb_status.TabIndex = 13;
+            //
+            // tb_assignee
+            //
+            this.tb_assignee.Location = new System.Drawing.Point(371, 74);
+            this.tb_assignee.Name = "tb_assignee";
+            this.tb_assignee.Size = new System.Drawing.Size(223, 25);
+            this.tb_assignee.TabIndex = 12;
+            //
+            // label8
+            //
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(29, 181);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 15);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Attachments";
+            //
+            // tb_attachments
+            //
+            this.tb_attachments.Location = new System.Drawing.Point(103, 178);
+            this.tb_attachments.Name = "tb_attachments";
+            this.tb_attachments.ReadOnly = true;
+            this.tb_attachments.Size = new System.Drawing.Size(391, 25);
+            this.tb_attachments.TabIndex = 15;
+            //
+            // bt_browse
+            //
+            this.bt_browse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.bt_browse.FlatAppearance.BorderSize = 0;
+            this.bt_browse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_browse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.bt_browse.ForeColor = System.Drawing.Color.White;
+            this.bt_browse.Location = new System.Drawing.Point(500, 177);
+            this.bt_browse.Name = "bt_browse";
+            this.bt_browse.Size = new System.Drawing.Size(75, 27);
+            this.bt_browse.TabIndex = 16;
+            this.bt_browse.Text = "Browse";
+            this.bt_browse.UseVisualStyleBackColor = false;
+            this.bt_browse.Click += new System.EventHandler(this.bt_browse_Click);
             //
             // radioButton_pending
             //
@@ -290,5 +401,14 @@ namespace PDMS
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_search;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cb_priority;
+        private System.Windows.Forms.ComboBox cb_status;
+        private System.Windows.Forms.TextBox tb_assignee;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tb_attachments;
+        private System.Windows.Forms.Button bt_browse;
     }
 }
