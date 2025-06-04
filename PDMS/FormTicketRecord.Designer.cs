@@ -19,12 +19,15 @@ namespace PDMS
             this.bt_delete = new System.Windows.Forms.Button();
             this.bt_update = new System.Windows.Forms.Button();
             this.bt_add = new System.Windows.Forms.Button();
+            this.bt_search = new System.Windows.Forms.Button();
             this.tb_status = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_description = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tb_search = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).BeginInit();
@@ -65,6 +68,9 @@ namespace PDMS
             this.groupBox1.Controls.Add(this.bt_delete);
             this.groupBox1.Controls.Add(this.bt_update);
             this.groupBox1.Controls.Add(this.bt_add);
+            this.groupBox1.Controls.Add(this.bt_search);
+            this.groupBox1.Controls.Add(this.tb_search);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tb_status);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tb_description);
@@ -125,6 +131,37 @@ namespace PDMS
             this.bt_add.UseVisualStyleBackColor = false;
             this.bt_add.Click += new System.EventHandler(this.bt_add_Click);
             // 
+            // bt_search
+            //
+            this.bt_search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.bt_search.FlatAppearance.BorderSize = 0;
+            this.bt_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_search.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.bt_search.ForeColor = System.Drawing.Color.White;
+            this.bt_search.Location = new System.Drawing.Point(600, 30);
+            this.bt_search.Name = "bt_search";
+            this.bt_search.Size = new System.Drawing.Size(75, 30);
+            this.bt_search.TabIndex = 9;
+            this.bt_search.Text = "Search";
+            this.bt_search.UseVisualStyleBackColor = false;
+            this.bt_search.Click += new System.EventHandler(this.bt_search_Click);
+            //
+            // tb_search
+            //
+            this.tb_search.Location = new System.Drawing.Point(371, 34);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(223, 25);
+            this.tb_search.TabIndex = 8;
+            //
+            // label4
+            //
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(320, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Search";
+            //
             // tb_status
             // 
             this.tb_status.Location = new System.Drawing.Point(103, 116);
@@ -197,11 +234,14 @@ namespace PDMS
         private System.Windows.Forms.Button bt_delete;
         private System.Windows.Forms.Button bt_update;
         private System.Windows.Forms.Button bt_add;
+        private System.Windows.Forms.Button bt_search;
         private System.Windows.Forms.TextBox tb_status;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_title;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb_search;
+        private System.Windows.Forms.Label label4;
     }
 }
