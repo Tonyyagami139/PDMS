@@ -74,5 +74,10 @@ namespace Dal
         {
             return TicketBll.GetTickets(sql);
         }
+
+        public List<Ticket> GetTicketsByDescription(string desc)
+        {
+            return TicketBll.GetTicketsByDescription(desc);
+        }
     }
 }

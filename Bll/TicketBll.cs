@@ -36,6 +36,15 @@ CREATE TABLE Ticket(
     CreateTime DATETIME,
     ModifyUserName NVARCHAR(50),
     ModifyTime DATETIME
+);IF NOT EXISTS(SELECT * FROM sysobjects WHERE name='TicketLog' and xtype='U')
+CREATE TABLE TicketLog(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    TicketId INT,
+    Title NVARCHAR(100),
+    Description NVARCHAR(MAX),
+    Status NVARCHAR(50),
+    ModifyUserName NVARCHAR(50),
+    ModifyTime DATETIME
 )";
             Db.ExecuteQuery(query);
         }
@@ -79,6 +88,7 @@ CREATE TABLE Ticket(
                 new SqlParameter("@Id", ticket.Id)
             };
             Db.ExecuteQuery(query, parameters);
+            AddTicketLog(ticket);
         }
 
         public Ticket GetTicket(int id)
@@ -111,6 +121,41 @@ CREATE TABLE Ticket(
                 list.Add(DataRowToTicket(row));
             }
             return list;
+        }
+
+        public List<Ticket> GetTicketsByDescription(string desc)
+        {
+            if (string.IsNullOrWhiteSpace(desc))
+            {
+                return GetTickets();
+            }
+            string query = "SELECT * FROM Ticket WHERE Description LIKE @Desc ORDER BY ModifyTime DESC";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Desc", "%" + desc + "%")
+            };
+            var dt = Db.ExecuteQuery(query, parameters);
+            List<Ticket> list = new List<Ticket>();
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(DataRowToTicket(row));
+            }
+            return list;
+        }
+
+        private void AddTicketLog(Ticket ticket)
+        {
+            string query = "INSERT INTO TicketLog(TicketId,Title,Description,Status,ModifyUserName,ModifyTime) VALUES(@TicketId,@Title,@Description,@Status,@ModifyUserName,@ModifyTime)";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@TicketId", ticket.Id),
+                new SqlParameter("@Title", ticket.Title),
+                new SqlParameter("@Description", ticket.Description),
+                new SqlParameter("@Status", ticket.Status),
+                new SqlParameter("@ModifyUserName", ticket.ModifyUserName),
+                new SqlParameter("@ModifyTime", ticket.ModifyTime)
+            };
+            Db.ExecuteQuery(query, parameters);
         }
 
         private Ticket DataRowToTicket(DataRow row)
