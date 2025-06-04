@@ -25,6 +25,8 @@ namespace PDMS
             this.label2 = new System.Windows.Forms.Label();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -33,12 +35,25 @@ namespace PDMS
             // 
             this.dataGridView_tickets.AllowUserToAddRows = false;
             this.dataGridView_tickets.AllowUserToDeleteRows = false;
+            this.dataGridView_tickets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView_tickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_tickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_tickets.EnableHeadersVisualStyles = false;
             this.dataGridView_tickets.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView_tickets.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_tickets.MultiSelect = false;
             this.dataGridView_tickets.Name = "dataGridView_tickets";
             this.dataGridView_tickets.ReadOnly = true;
+            this.dataGridView_tickets.RowHeadersVisible = false;
             this.dataGridView_tickets.RowTemplate.Height = 27;
             this.dataGridView_tickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_tickets.Size = new System.Drawing.Size(800, 240);
@@ -62,36 +77,52 @@ namespace PDMS
             this.groupBox1.Size = new System.Drawing.Size(800, 210);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ticket";
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.groupBox1.Text = "Ticket Details";
             // 
             // bt_delete
             // 
+            this.bt_delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.bt_delete.FlatAppearance.BorderSize = 0;
+            this.bt_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_delete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.bt_delete.ForeColor = System.Drawing.Color.White;
             this.bt_delete.Location = new System.Drawing.Point(357, 158);
             this.bt_delete.Name = "bt_delete";
-            this.bt_delete.Size = new System.Drawing.Size(75, 23);
+            this.bt_delete.Size = new System.Drawing.Size(75, 30);
             this.bt_delete.TabIndex = 8;
             this.bt_delete.Text = "Delete";
-            this.bt_delete.UseVisualStyleBackColor = true;
+            this.bt_delete.UseVisualStyleBackColor = false;
             this.bt_delete.Click += new System.EventHandler(this.bt_delete_Click);
             // 
             // bt_update
             // 
+            this.bt_update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.bt_update.FlatAppearance.BorderSize = 0;
+            this.bt_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_update.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.bt_update.ForeColor = System.Drawing.Color.White;
             this.bt_update.Location = new System.Drawing.Point(276, 158);
             this.bt_update.Name = "bt_update";
-            this.bt_update.Size = new System.Drawing.Size(75, 23);
+            this.bt_update.Size = new System.Drawing.Size(75, 30);
             this.bt_update.TabIndex = 7;
             this.bt_update.Text = "Update";
-            this.bt_update.UseVisualStyleBackColor = true;
+            this.bt_update.UseVisualStyleBackColor = false;
             this.bt_update.Click += new System.EventHandler(this.bt_update_Click);
             // 
             // bt_add
             // 
+            this.bt_add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.bt_add.FlatAppearance.BorderSize = 0;
+            this.bt_add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.bt_add.ForeColor = System.Drawing.Color.White;
             this.bt_add.Location = new System.Drawing.Point(195, 158);
             this.bt_add.Name = "bt_add";
-            this.bt_add.Size = new System.Drawing.Size(75, 23);
+            this.bt_add.Size = new System.Drawing.Size(75, 30);
             this.bt_add.TabIndex = 6;
             this.bt_add.Text = "Add";
-            this.bt_add.UseVisualStyleBackColor = true;
+            this.bt_add.UseVisualStyleBackColor = false;
             this.bt_add.Click += new System.EventHandler(this.bt_add_Click);
             // 
             // tb_status
@@ -146,10 +177,12 @@ namespace PDMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView_tickets);
             this.Name = "FormTicketRecord";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ticket Record";
             this.Load += new System.EventHandler(this.FormTicketRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).EndInit();
