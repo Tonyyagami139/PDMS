@@ -14,6 +14,8 @@ namespace Common
         public  string ProductFamily { get; set; }
         public string ProductName { get; set; }
 
+        public string ProductType { get; set; }
+
         public string WorkStepProcessName { get; set; }
         public string FailureMode { get; set; }
         public string Status { get; set; } = string.Empty;

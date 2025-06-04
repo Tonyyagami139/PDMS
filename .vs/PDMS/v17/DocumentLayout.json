@@ -3,43 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|c:\\users\\tianx\\desktop\\settings\\solutions\\pdms\\pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|PDMS||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\failurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\failurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\facade\\formfacadefailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\facade\\formfacadefailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\facade\\formfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\facade\\formfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{530C099F-7F1A-41AF-BE7B-22ADA919DE6C}|Dal\\Dal.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\dal\\failurerecorddal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,12 +43,40 @@
       "RelativeMoniker": "D:0:0:{1E70A641-84D9-4393-A952-908145A5D60A}|Bll\\Bll.csproj|solutionrelative:bll\\failurerecordbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{530C099F-7F1A-41AF-BE7B-22ADA919DE6C}|Dal\\Dal.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C099F-7F1A-41AF-BE7B-22ADA919DE6C}|Dal\\Dal.csproj|solutionrelative:dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\facade\\formfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\facade\\formfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\fastexcelworkbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\fastexcelworkbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\fastexcelworksheet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\fastexcelworksheet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\fastexcelexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\fastexcelexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\failurerecord_productinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\failurerecord_productinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\failurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\failurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\processkeyname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\processkeyname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{14389AB7-3DC2-4E64-9D36-2695CF08592A}|Database\\Database.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\database\\sqlserverhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,10 +100,6 @@
       "RelativeMoniker": "D:0:0:{14389AB7-3DC2-4E64-9D36-2695CF08592A}|Database\\Database.csproj|solutionrelative:database\\idatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\common\\processkeyname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2D01209-4E2A-4B01-AF7A-15C4EBA497B0}|Common\\Common.csproj|solutionrelative:common\\processkeyname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{14389AB7-3DC2-4E64-9D36-2695CF08592A}|Database\\Database.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\database\\sqlhelperbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14389AB7-3DC2-4E64-9D36-2695CF08592A}|Database\\Database.csproj|solutionrelative:database\\sqlhelperbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -97,10 +114,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1E70A641-84D9-4393-A952-908145A5D60A}|Bll\\Bll.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\bll\\userbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E70A641-84D9-4393-A952-908145A5D60A}|Bll\\Bll.csproj|solutionrelative:bll\\userbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{530C099F-7F1A-41AF-BE7B-22ADA919DE6C}|Dal\\Dal.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{530C099F-7F1A-41AF-BE7B-22ADA919DE6C}|Dal\\Dal.csproj|solutionrelative:dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -144,9 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\pdms\\formlogin.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
       "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formlogin.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|c:\\users\\tianx\\desktop\\settings\\solutions\\pdms\\pdms\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|cc4014f5-b18d-439c-9352-f99d984cca85"
     }
   ],
   "DocumentGroupContainers": [
@@ -156,70 +166,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PDMS",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\PDMS.csproj",
-              "RelativeDocumentMoniker": "PDMS\\PDMS.csproj",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\PDMS.csproj",
-              "RelativeToolTip": "PDMS\\PDMS.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-20T03:22:27.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "M0764_TPN2217.json",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
-              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
-              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
-              "ViewState": "AgIAABEAAAAAAAAAAABUwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T02:44:02.584Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormLogIn.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
-              "RelativeDocumentMoniker": "PDMS\\FormLogIn.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "PDMS\\FormLogIn.cs [\u8BBE\u8BA1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T02:40:04.558Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormLogIn.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
-              "RelativeDocumentMoniker": "PDMS\\FormLogIn.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
-              "RelativeToolTip": "PDMS\\FormLogIn.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAwwGoAAABgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T02:57:46.042Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Global.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Global.cs",
-              "RelativeDocumentMoniker": "PDMS\\Global.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Global.cs",
-              "RelativeToolTip": "PDMS\\Global.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA6wBoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T01:51:39.956Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "FormFailureRecord.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.cs",
               "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.cs",
@@ -231,56 +182,128 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "FormFacadeFailureRecord.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Facade\\FormFacadeFailureRecord.cs",
+              "RelativeDocumentMoniker": "PDMS\\Facade\\FormFacadeFailureRecord.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Facade\\FormFacadeFailureRecord.cs",
+              "RelativeToolTip": "PDMS\\Facade\\FormFacadeFailureRecord.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAzwC8AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T01:38:48.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormFailureRecord.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
+              "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.Designer.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
+              "RelativeToolTip": "PDMS\\FormFailureRecord.Designer.cs",
+              "ViewState": "AgIAAEkCAAAAAAAAAAAwwFcCAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T08:11:40.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "FormFailureRecord.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.cs",
               "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.cs",
               "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.cs",
               "RelativeToolTip": "PDMS\\FormFailureRecord.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAywIAAAABoAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAQwKIBAABdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T02:14:31.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "M1132.json",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
-              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
-              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
-              "ViewState": "AgIAAFMAAAAAAAAAAABUwGAAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T02:44:11.133Z"
+              "DocumentIndex": 6,
+              "Title": "FormLogIn.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
+              "RelativeDocumentMoniker": "PDMS\\FormLogIn.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
+              "RelativeToolTip": "PDMS\\FormLogIn.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAA8wCgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T02:57:46.042Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\User.cs",
-              "RelativeDocumentMoniker": "Common\\User.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\User.cs",
-              "RelativeToolTip": "Common\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Program.cs",
+              "RelativeDocumentMoniker": "PDMS\\Program.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Program.cs",
+              "RelativeToolTip": "PDMS\\Program.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAswCAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T09:33:50.219Z"
+              "WhenOpened": "2025-01-09T03:06:30.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Global.cs",
+              "RelativeDocumentMoniker": "PDMS\\Global.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Global.cs",
+              "RelativeToolTip": "PDMS\\Global.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAgwCoAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T01:51:39.956Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "FailureRecord.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord.cs",
-              "RelativeDocumentMoniker": "Common\\FailureRecord.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord.cs",
-              "RelativeToolTip": "Common\\FailureRecord.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Title": "FormLogIn.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs",
+              "RelativeDocumentMoniker": "PDMS\\FormLogIn.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "PDMS\\FormLogIn.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T05:30:12.951Z"
+              "WhenOpened": "2025-01-09T02:40:04.558Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "FailureRecordBll.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Bll\\FailureRecordBll.cs",
+              "RelativeDocumentMoniker": "Bll\\FailureRecordBll.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Bll\\FailureRecordBll.cs",
+              "RelativeToolTip": "Bll\\FailureRecordBll.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAAD4v8IAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T01:45:58.397Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserDal.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\UserDal.cs",
+              "RelativeDocumentMoniker": "Dal\\UserDal.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\UserDal.cs",
+              "RelativeToolTip": "Dal\\UserDal.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T01:03:34.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FailureRecordDal.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\FailureRecordDal.cs",
+              "RelativeDocumentMoniker": "Dal\\FailureRecordDal.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\FailureRecordDal.cs",
+              "RelativeToolTip": "Dal\\FailureRecordDal.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAzwHAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T01:46:25.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "FormFacade.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Facade\\FormFacade.cs",
               "RelativeDocumentMoniker": "PDMS\\Facade\\FormFacade.cs",
@@ -292,127 +315,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "FormFacadeFailureRecord.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Facade\\FormFacadeFailureRecord.cs",
-              "RelativeDocumentMoniker": "PDMS\\Facade\\FormFacadeFailureRecord.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Facade\\FormFacadeFailureRecord.cs",
-              "RelativeToolTip": "PDMS\\Facade\\FormFacadeFailureRecord.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAswBAAAABXAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "FastExcelWorkbook.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelWorkbook.cs",
+              "RelativeDocumentMoniker": "Common\\FastExcelWorkbook.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelWorkbook.cs",
+              "RelativeToolTip": "Common\\FastExcelWorkbook.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAowHIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T01:38:48.055Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FailureRecordDal.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\FailureRecordDal.cs",
-              "RelativeDocumentMoniker": "Dal\\FailureRecordDal.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\FailureRecordDal.cs",
-              "RelativeToolTip": "Dal\\FailureRecordDal.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAAAIEAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T01:46:25.122Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "TYW-LAPTOP.json",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
-              "RelativeDocumentMoniker": "..\\..\\..\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
-              "RelativeToolTip": "..\\..\\..\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-14T07:00:30.304Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PCM_S3028D_DD650.json",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
-              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
-              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T02:21:38.701Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FailureRecordBll.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Bll\\FailureRecordBll.cs",
-              "RelativeDocumentMoniker": "Bll\\FailureRecordBll.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Bll\\FailureRecordBll.cs",
-              "RelativeToolTip": "Bll\\FailureRecordBll.cs",
-              "ViewState": "AgIAALcAAAAAAAAAAAAswJUAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T01:45:58.397Z"
+              "WhenOpened": "2025-05-26T05:46:52.5Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "FormFailureRecord.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
-              "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.Designer.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
-              "RelativeToolTip": "PDMS\\FormFailureRecord.Designer.cs",
-              "ViewState": "AgIAANoAAAAAAAAAAAAwwOcAAAA0AAAAAAAAAA==",
+              "Title": "FastExcelWorksheet.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelWorksheet.cs",
+              "RelativeDocumentMoniker": "Common\\FastExcelWorksheet.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelWorksheet.cs",
+              "RelativeToolTip": "Common\\FastExcelWorksheet.cs",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAgwLIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T08:11:40.565Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T05:47:58.568Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "SqlServerHelper.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\SqlServerHelper.cs",
-              "RelativeDocumentMoniker": "Database\\SqlServerHelper.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\SqlServerHelper.cs",
-              "RelativeToolTip": "Database\\SqlServerHelper.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAWwE4AAAAdAAAAAAAAAA==",
+              "Title": "FastExcelException.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelException.cs",
+              "RelativeDocumentMoniker": "Common\\FastExcelException.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FastExcelException.cs",
+              "RelativeToolTip": "Common\\FastExcelException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T04:22:22.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Program.cs",
-              "RelativeDocumentMoniker": "PDMS\\Program.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Program.cs",
-              "RelativeToolTip": "PDMS\\Program.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAIAzwCAAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T03:06:30.094Z"
+              "WhenOpened": "2025-05-26T05:48:39.695Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "DatabaseSqlServer.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseSqlServer.cs",
-              "RelativeDocumentMoniker": "Database\\DatabaseSqlServer.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseSqlServer.cs",
-              "RelativeToolTip": "Database\\DatabaseSqlServer.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAWwD0AAAAMAAAAAAAAAA==",
+              "Title": "FailureRecord_ProductInfo.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord_ProductInfo.cs",
+              "RelativeDocumentMoniker": "Common\\FailureRecord_ProductInfo.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord_ProductInfo.cs",
+              "RelativeToolTip": "Common\\FailureRecord_ProductInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T04:20:04.952Z"
+              "WhenOpened": "2025-05-26T05:44:04.367Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "IDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\IDatabase.cs",
-              "RelativeDocumentMoniker": "Database\\IDatabase.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\IDatabase.cs",
-              "RelativeToolTip": "Database\\IDatabase.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAD4vxMAAAASAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "FailureRecord.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord.cs",
+              "RelativeDocumentMoniker": "Common\\FailureRecord.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\FailureRecord.cs",
+              "RelativeToolTip": "Common\\FailureRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T01:59:59.395Z"
+              "WhenOpened": "2025-05-16T05:30:12.951Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 17,
               "Title": "ProcessKeyName.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\ProcessKeyName.cs",
               "RelativeDocumentMoniker": "Common\\ProcessKeyName.cs",
@@ -424,7 +387,102 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\User.cs",
+              "RelativeDocumentMoniker": "Common\\User.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\User.cs",
+              "RelativeToolTip": "Common\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T09:33:50.219Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 21,
+              "Title": "M1132.json",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
+              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M1132.json",
+              "ViewState": "AgIAAFMAAAAAAAAAAABUwGAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T02:44:11.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "M0764_TPN2217.json",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
+              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\XrayTester01n02\\M0764_TPN2217.json",
+              "ViewState": "AgIAABEAAAAAAAAAAABUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T02:44:02.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "TYW-LAPTOP.json",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
+              "RelativeToolTip": "..\\..\\..\\SVN\\VitaTesting\\Setup\\TYW-LAPTOP.json",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-14T07:00:30.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "PCM_S3028D_DD650.json",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
+              "RelativeToolTip": "..\\..\\..\\TymSvn\\VitaTesting\\Configuration\\Vitality\\PCM_S3028D_DD650.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T02:21:38.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SqlServerHelper.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\SqlServerHelper.cs",
+              "RelativeDocumentMoniker": "Database\\SqlServerHelper.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\SqlServerHelper.cs",
+              "RelativeToolTip": "Database\\SqlServerHelper.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAWwE4AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T04:22:22.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DatabaseSqlServer.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseSqlServer.cs",
+              "RelativeDocumentMoniker": "Database\\DatabaseSqlServer.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseSqlServer.cs",
+              "RelativeToolTip": "Database\\DatabaseSqlServer.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAWwD0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T04:20:04.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\IDatabase.cs",
+              "RelativeDocumentMoniker": "Database\\IDatabase.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\IDatabase.cs",
+              "RelativeToolTip": "Database\\IDatabase.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAD4vxMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T01:59:59.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "SqlHelperBase.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\SqlHelperBase.cs",
               "RelativeDocumentMoniker": "Database\\SqlHelperBase.cs",
@@ -436,7 +494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "MySqlHelper.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\MySqlHelper.cs",
               "RelativeDocumentMoniker": "Database\\MySqlHelper.cs",
@@ -448,7 +506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "DatabaseTym.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseTym.cs",
               "RelativeDocumentMoniker": "Database\\DatabaseTym.cs",
@@ -460,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "UserBll.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Bll\\UserBll.cs",
               "RelativeDocumentMoniker": "Bll\\UserBll.cs",
@@ -472,19 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "UserDal.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\UserDal.cs",
-              "RelativeDocumentMoniker": "Dal\\UserDal.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Dal\\UserDal.cs",
-              "RelativeToolTip": "Dal\\UserDal.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAuwDsAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T01:03:34.88Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "FormLogIn.Designer.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.Designer.cs",
               "RelativeDocumentMoniker": "PDMS\\FormLogIn.Designer.cs",
@@ -496,7 +542,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "001_15.ico - Icon [24x24, 4 \u4F4D, BMP]",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\001_15.ico",
               "RelativeDocumentMoniker": "PDMS\\001_15.ico",
@@ -507,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "DatabaseFactory.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\DatabaseFactory.cs",
               "RelativeDocumentMoniker": "Database\\DatabaseFactory.cs",
@@ -519,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "MysqlDbPathItems.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\Model\\MysqlDbPathItems.cs",
               "RelativeDocumentMoniker": "Database\\Model\\MysqlDbPathItems.cs",
@@ -531,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "JsonHelper.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\JsonHelper.cs",
               "RelativeDocumentMoniker": "Database\\JsonHelper.cs",
@@ -543,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "FtpHelper.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Database\\FtpHelper.cs",
               "RelativeDocumentMoniker": "Database\\FtpHelper.cs",
@@ -555,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "Resources.resx",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\Properties\\Resources.resx",
               "RelativeDocumentMoniker": "PDMS\\Properties\\Resources.resx",
@@ -568,7 +614,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "app.config",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\app.config",
               "RelativeDocumentMoniker": "PDMS\\app.config",
@@ -581,7 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "Md5Helper.cs",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\Common\\Utility\\Md5Helper.cs",
               "RelativeDocumentMoniker": "Common\\Utility\\Md5Helper.cs",
@@ -593,7 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "FormLogIn.resx",
               "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\Settings\\Solutions\\PDMS\\PDMS\\FormLogIn.resx",
               "RelativeDocumentMoniker": "PDMS\\FormLogIn.resx",

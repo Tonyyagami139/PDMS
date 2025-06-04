@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Common;
 using Dal;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace PDMS.Facade
     public partial class FormFacade
     {
         public ListSortDirection direction { get; set; } = ListSortDirection.Ascending;
+        public string LocalPDMSFolder { get; set; } = "C:\\ProgramData\\zTx\\PDMS";
+        public string configurationFileName { get; set; }
         public void FailureRecordShowLog(TextBox tb_log, string CnStr)
         {
             tb_log.AppendText(CnStr);
@@ -22,21 +25,116 @@ namespace PDMS.Facade
             tb_log.AppendText("\n");
         }
 
+        public void CopyConfigs2Local()
+        {
+            string filename = "\\\\192.168.31.223\\TestingDataRoot\\PDMS\\FailureRecord\\FailureRecord_Configs.xlsx";
+            string guid = Guid.NewGuid().ToString();
+            configurationFileName = $"{LocalPDMSFolder}\\{guid}_FailureRecord_Configs.xlsx";
+            if (Directory.Exists(LocalPDMSFolder))
+            {
+                var files = Directory.GetFiles(LocalPDMSFolder);
+                try
+                {
+                    foreach (var f in files)
+                    {
+                        if (f.EndsWith("_FailureRecord_Configs.xlsx"))
+                        {
+                            File.Delete(f);
+                        }
+                    }
+                }
+                catch
+                { 
+                  //ignore error
+                }
+            }
+            if (!Directory.Exists(LocalPDMSFolder))
+            {
+                Directory.CreateDirectory(LocalPDMSFolder);
+            }
+            if (File.Exists(configurationFileName))
+            {
+                File.Delete(configurationFileName);
+            }
+            File.Copy(filename, configurationFileName, true);
+        }
+
+        public List<FailureRecord_ProductInfo> ReadProductInfo()
+        {
+            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
+            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "ProductInfo");
+            List<FailureRecord_ProductInfo> list = new List<FailureRecord_ProductInfo>();
+            if (worksheet == null)
+            {
+                MessageBox.Show("配置文件中未找到ProductInfo工作表，请检查配置文件。");
+                throw new FastExcelException("配置文件中未找到ProductInfo工作表，请检查配置文件。");
+            }
+
+            var row = 2;//skip header
+            while (true)
+            {
+
+                var cellValue = worksheet.GetCellValue(row, 1);
+                if (string.IsNullOrEmpty(cellValue))
+                {
+                    break; // 如果第一列的值为空，结束读取
+                }
+                var productInfo = new FailureRecord_ProductInfo
+                {
+                    ProductFamily = worksheet.GetCellValue(row, 1) ?? string.Empty,
+                    ProductName = worksheet.GetCellValue(row, 2) ?? string.Empty,
+                    ProductType = worksheet.GetCellValue(row, 3) ?? string.Empty
+                };
+                list.Add(productInfo);
+                row++;
+            }
+            return list;
+
+        }
+
         public List<string> GetFailureModes()
         {
-            return File.ReadAllLines(Global.FailureModesFileName).ToList();
+            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
+            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "FailureModes");
+            List<string> list = new List<string>();
+            var row = 2;//skip header
+            while (true)
+            {
+
+                var cellValue = worksheet.GetCellValue(row, 1);
+                if (string.IsNullOrEmpty(cellValue))
+                {
+                    break; // 如果第一列的值为空，结束读取
+                }
+
+                list.Add(cellValue);
+                row++;
+            }
+            return list;
         }
         public List<string> GetProcesses()
         {
-            return File.ReadLines(Global.ProcessesFileName).ToList();
+
+            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
+            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "Worksteps");
+            List<string> list = new List<string>();
+            var row = 2;//skip header
+            while (true)
+            {
+
+                var cellValue = worksheet.GetCellValue(row, 1);
+                if (string.IsNullOrEmpty(cellValue))
+                {
+                    break; // 如果第一列的值为空，结束读取
+                }
+
+                list.Add(cellValue);
+                row++;
+
+            }
+            return list;
         }
 
-        public List<string> GetProductFamilies()
-        {
-            var dal = new FailureRecordDal(Global.DbSettingTym);
-            return dal.GetProductFamilies();
-
-        }
         public bool IsFailureModeValidate(string failureMode)
         {
             var failures = GetFailureModes();
@@ -87,14 +185,15 @@ namespace PDMS.Facade
                 ws.Cell(1, 2).Value = "SerialNumber";
                 ws.Cell(1, 3).Value = "ProductFamily";
                 ws.Cell(1, 4).Value = "ProductName";
-                ws.Cell(1, 5).Value = "WorkStepProcessName";
-                ws.Cell(1, 6).Value = "FailureMode";
-                ws.Cell(1, 7).Value = "Status";
-                ws.Cell(1, 8).Value = "CreateUserName";
-                ws.Cell(1, 9).Value = "CreateTime";
-                ws.Cell(1, 10).Value = "ModifyUserName";
-                ws.Cell(1, 11).Value = "ModifyTime";
-                ws.Cell(1, 12).Value = "Comment";
+                ws.Cell(1, 5).Value = "ProductType";
+                ws.Cell(1, 6).Value = "WorkStepProcessName";
+                ws.Cell(1, 7).Value = "FailureMode";
+                ws.Cell(1, 8).Value = "Status";
+                ws.Cell(1, 9).Value = "CreateUserName";
+                ws.Cell(1, 10).Value = "CreateTime";
+                ws.Cell(1, 11).Value = "ModifyUserName";
+                ws.Cell(1, 12).Value = "ModifyTime";
+                ws.Cell(1, 13).Value = "Comment";
 
                 // 添加数据
                 for (int i = 0; i < records.Count; i++)
@@ -105,10 +204,11 @@ namespace PDMS.Facade
                     ws.Cell(row, 2).Value = r.SerialNumber;
                     ws.Cell(row, 3).Value = r.ProductFamily;
                     ws.Cell(row, 4).Value = r.ProductName;
-                    ws.Cell(row, 5).Value = r.WorkStepProcessName;
-                    ws.Cell(row, 6).Value = r.FailureMode;
+                    ws.Cell(row, 5).Value = r.ProductType;
+                    ws.Cell(row, 6).Value = r.WorkStepProcessName;
+                    ws.Cell(row, 7).Value = r.FailureMode;
                     // Status设置值和字体颜色
-                    var statusCell = ws.Cell(row, 7);
+                    var statusCell = ws.Cell(row, 8);
                     statusCell.Value = r.Status;
                     if (string.Equals(r.Status, "", StringComparison.OrdinalIgnoreCase))
                     {
@@ -126,11 +226,11 @@ namespace PDMS.Facade
                     {
                         statusCell.Style.Font.FontColor = XLColor.Orange; // 黄色字体
                     }
-                    ws.Cell(row, 8).Value = r.CreateUserName;
-                    ws.Cell(row, 9).Value = r.CreateTime;
-                    ws.Cell(row, 10).Value = r.ModifyUserName;
-                    ws.Cell(row, 11).Value = r.ModifyTime;
-                    ws.Cell(row, 12).Value = r.Comment;
+                    ws.Cell(row, 9).Value = r.CreateUserName;
+                    ws.Cell(row, 10).Value = r.CreateTime;
+                    ws.Cell(row, 11).Value = r.ModifyUserName;
+                    ws.Cell(row, 12).Value = r.ModifyTime;
+                    ws.Cell(row, 13).Value = r.Comment;
                 }
 
                 // 可选：自动调整列宽

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFailureRecord));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tb_FRlog = new System.Windows.Forms.TextBox();
@@ -48,6 +48,7 @@
             this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkStepProcessName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FailureMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,8 +59,10 @@
             this.ModifyTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox_failureRecord = new System.Windows.Forms.GroupBox();
+            this.tb_productFamily = new System.Windows.Forms.TextBox();
             this.tb_productName = new System.Windows.Forms.TextBox();
-            this.cb_FRproductFamily = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_producType = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.GroupBox_FinalResult = new System.Windows.Forms.GroupBox();
@@ -100,9 +103,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 410F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.tb_FRlog, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox_FailureRecord, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView_failureRecord, 1, 0);
@@ -114,10 +116,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1171, 816);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -127,16 +125,16 @@
             this.tb_FRlog.Location = new System.Drawing.Point(3, 655);
             this.tb_FRlog.Multiline = true;
             this.tb_FRlog.Name = "tb_FRlog";
-            this.tb_FRlog.Size = new System.Drawing.Size(394, 158);
+            this.tb_FRlog.Size = new System.Drawing.Size(404, 158);
             this.tb_FRlog.TabIndex = 1193;
             // 
             // pictureBox_FailureRecord
             // 
             this.pictureBox_FailureRecord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_FailureRecord.Location = new System.Drawing.Point(403, 329);
+            this.pictureBox_FailureRecord.Location = new System.Drawing.Point(413, 329);
             this.pictureBox_FailureRecord.Name = "pictureBox_FailureRecord";
             this.tableLayoutPanel1.SetRowSpan(this.pictureBox_FailureRecord, 2);
-            this.pictureBox_FailureRecord.Size = new System.Drawing.Size(765, 484);
+            this.pictureBox_FailureRecord.Size = new System.Drawing.Size(755, 484);
             this.pictureBox_FailureRecord.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_FailureRecord.TabIndex = 5;
             this.pictureBox_FailureRecord.TabStop = false;
@@ -151,6 +149,7 @@
             this.SerialNumber,
             this.ProductFamily,
             this.ProductName,
+            this.ProductType,
             this.WorkStepProcessName,
             this.FailureMode,
             this.Status,
@@ -161,7 +160,7 @@
             this.ModifyTime,
             this.Id});
             this.dataGridView_failureRecord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_failureRecord.Location = new System.Drawing.Point(403, 3);
+            this.dataGridView_failureRecord.Location = new System.Drawing.Point(413, 3);
             this.dataGridView_failureRecord.MultiSelect = false;
             this.dataGridView_failureRecord.Name = "dataGridView_failureRecord";
             this.dataGridView_failureRecord.ReadOnly = true;
@@ -169,17 +168,19 @@
             this.dataGridView_failureRecord.RowHeadersWidth = 51;
             this.dataGridView_failureRecord.RowTemplate.Height = 27;
             this.dataGridView_failureRecord.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_failureRecord.Size = new System.Drawing.Size(765, 320);
+            this.dataGridView_failureRecord.Size = new System.Drawing.Size(755, 320);
             this.dataGridView_failureRecord.TabIndex = 4;
             this.dataGridView_failureRecord.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_failureRecord_CellClick);
             this.dataGridView_failureRecord.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_failureRecord_CellFormatting);
             this.dataGridView_failureRecord.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_failureRecord_ColumnHeaderMouseClick);
+            this.dataGridView_failureRecord.CurrentCellChanged += new System.EventHandler(this.dataGridView_failureRecord_CurrentCellChanged);
             // 
             // SerialNumber
             // 
             this.SerialNumber.DataPropertyName = "SerialNumber";
-            dataGridViewCellStyle97.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle97;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle13;
+            this.SerialNumber.Frozen = true;
             this.SerialNumber.HeaderText = "序列号";
             this.SerialNumber.MinimumWidth = 6;
             this.SerialNumber.Name = "SerialNumber";
@@ -189,8 +190,8 @@
             // ProductFamily
             // 
             this.ProductFamily.DataPropertyName = "ProductFamily";
-            dataGridViewCellStyle98.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductFamily.DefaultCellStyle = dataGridViewCellStyle98;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductFamily.DefaultCellStyle = dataGridViewCellStyle14;
             this.ProductFamily.HeaderText = "产品系列";
             this.ProductFamily.MinimumWidth = 6;
             this.ProductFamily.Name = "ProductFamily";
@@ -200,19 +201,28 @@
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
-            dataGridViewCellStyle99.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductName.DefaultCellStyle = dataGridViewCellStyle99;
-            this.ProductName.HeaderText = "产品型号";
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductName.DefaultCellStyle = dataGridViewCellStyle15;
+            this.ProductName.HeaderText = "产品名称";
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             this.ProductName.Width = 96;
             // 
+            // ProductType
+            // 
+            this.ProductType.DataPropertyName = "ProductType";
+            this.ProductType.HeaderText = "产品型号";
+            this.ProductType.MinimumWidth = 6;
+            this.ProductType.Name = "ProductType";
+            this.ProductType.ReadOnly = true;
+            this.ProductType.Width = 96;
+            // 
             // WorkStepProcessName
             // 
             this.WorkStepProcessName.DataPropertyName = "WorkStepProcessName";
-            dataGridViewCellStyle100.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.WorkStepProcessName.DefaultCellStyle = dataGridViewCellStyle100;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WorkStepProcessName.DefaultCellStyle = dataGridViewCellStyle16;
             this.WorkStepProcessName.HeaderText = "流程";
             this.WorkStepProcessName.MinimumWidth = 6;
             this.WorkStepProcessName.Name = "WorkStepProcessName";
@@ -222,8 +232,8 @@
             // FailureMode
             // 
             this.FailureMode.DataPropertyName = "FailureMode";
-            dataGridViewCellStyle101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FailureMode.DefaultCellStyle = dataGridViewCellStyle101;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FailureMode.DefaultCellStyle = dataGridViewCellStyle17;
             this.FailureMode.HeaderText = "失效模式";
             this.FailureMode.MinimumWidth = 6;
             this.FailureMode.Name = "FailureMode";
@@ -233,8 +243,8 @@
             // Status
             // 
             this.Status.DataPropertyName = "Status";
-            dataGridViewCellStyle102.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Status.DefaultCellStyle = dataGridViewCellStyle102;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Status.DefaultCellStyle = dataGridViewCellStyle18;
             this.Status.HeaderText = "状态";
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
@@ -244,8 +254,8 @@
             // Comment
             // 
             this.Comment.DataPropertyName = "Comment";
-            dataGridViewCellStyle103.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Comment.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Comment.DefaultCellStyle = dataGridViewCellStyle19;
             this.Comment.HeaderText = "备注";
             this.Comment.MinimumWidth = 6;
             this.Comment.Name = "Comment";
@@ -255,8 +265,8 @@
             // CreateUserName
             // 
             this.CreateUserName.DataPropertyName = "CreateUserName";
-            dataGridViewCellStyle104.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CreateUserName.DefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CreateUserName.DefaultCellStyle = dataGridViewCellStyle20;
             this.CreateUserName.HeaderText = "创建人";
             this.CreateUserName.MinimumWidth = 6;
             this.CreateUserName.Name = "CreateUserName";
@@ -266,8 +276,8 @@
             // CreateTime
             // 
             this.CreateTime.DataPropertyName = "CreateTime";
-            dataGridViewCellStyle105.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CreateTime.DefaultCellStyle = dataGridViewCellStyle105;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CreateTime.DefaultCellStyle = dataGridViewCellStyle21;
             this.CreateTime.HeaderText = "创建时间";
             this.CreateTime.MinimumWidth = 6;
             this.CreateTime.Name = "CreateTime";
@@ -277,8 +287,8 @@
             // ModifyUserName
             // 
             this.ModifyUserName.DataPropertyName = "ModifyUserName";
-            dataGridViewCellStyle106.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ModifyUserName.DefaultCellStyle = dataGridViewCellStyle106;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ModifyUserName.DefaultCellStyle = dataGridViewCellStyle22;
             this.ModifyUserName.HeaderText = "修改人";
             this.ModifyUserName.MinimumWidth = 6;
             this.ModifyUserName.Name = "ModifyUserName";
@@ -288,8 +298,8 @@
             // ModifyTime
             // 
             this.ModifyTime.DataPropertyName = "ModifyTime";
-            dataGridViewCellStyle107.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ModifyTime.DefaultCellStyle = dataGridViewCellStyle107;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ModifyTime.DefaultCellStyle = dataGridViewCellStyle23;
             this.ModifyTime.HeaderText = "修改时间";
             this.ModifyTime.MinimumWidth = 6;
             this.ModifyTime.Name = "ModifyTime";
@@ -299,8 +309,8 @@
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle108.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Id.DefaultCellStyle = dataGridViewCellStyle108;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle24;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -309,8 +319,10 @@
             // 
             // groupBox_failureRecord
             // 
+            this.groupBox_failureRecord.Controls.Add(this.tb_productFamily);
             this.groupBox_failureRecord.Controls.Add(this.tb_productName);
-            this.groupBox_failureRecord.Controls.Add(this.cb_FRproductFamily);
+            this.groupBox_failureRecord.Controls.Add(this.label8);
+            this.groupBox_failureRecord.Controls.Add(this.tb_producType);
             this.groupBox_failureRecord.Controls.Add(this.label7);
             this.groupBox_failureRecord.Controls.Add(this.label2);
             this.groupBox_failureRecord.Controls.Add(this.GroupBox_FinalResult);
@@ -335,32 +347,45 @@
             this.groupBox_failureRecord.Location = new System.Drawing.Point(3, 3);
             this.groupBox_failureRecord.Name = "groupBox_failureRecord";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox_failureRecord, 2);
-            this.groupBox_failureRecord.Size = new System.Drawing.Size(394, 646);
+            this.groupBox_failureRecord.Size = new System.Drawing.Size(404, 646);
             this.groupBox_failureRecord.TabIndex = 3;
             this.groupBox_failureRecord.TabStop = false;
             // 
+            // tb_productFamily
+            // 
+            this.tb_productFamily.Location = new System.Drawing.Point(107, 158);
+            this.tb_productFamily.Name = "tb_productFamily";
+            this.tb_productFamily.Size = new System.Drawing.Size(291, 31);
+            this.tb_productFamily.TabIndex = 1199;
+            // 
             // tb_productName
             // 
-            this.tb_productName.Location = new System.Drawing.Point(107, 191);
+            this.tb_productName.Location = new System.Drawing.Point(107, 195);
             this.tb_productName.Name = "tb_productName";
-            this.tb_productName.Size = new System.Drawing.Size(280, 31);
-            this.tb_productName.TabIndex = 1196;
-            this.tb_productName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_productName_KeyPress);
+            this.tb_productName.Size = new System.Drawing.Size(291, 31);
+            this.tb_productName.TabIndex = 1198;
             // 
-            // cb_FRproductFamily
+            // label8
             // 
-            this.cb_FRproductFamily.FormattingEnabled = true;
-            this.cb_FRproductFamily.Location = new System.Drawing.Point(107, 154);
-            this.cb_FRproductFamily.Name = "cb_FRproductFamily";
-            this.cb_FRproductFamily.Size = new System.Drawing.Size(280, 32);
-            this.cb_FRproductFamily.TabIndex = 1195;
-            this.cb_FRproductFamily.TextChanged += new System.EventHandler(this.cb_FRproductFamily_TextChanged);
-            this.cb_FRproductFamily.Click += new System.EventHandler(this.HandleDorpdown);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 202);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 24);
+            this.label8.TabIndex = 1197;
+            this.label8.Text = "产品名称：";
+            // 
+            // tb_producType
+            // 
+            this.tb_producType.Location = new System.Drawing.Point(107, 235);
+            this.tb_producType.Name = "tb_producType";
+            this.tb_producType.Size = new System.Drawing.Size(291, 31);
+            this.tb_producType.TabIndex = 1196;
+            this.tb_producType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_productName_KeyPress);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 161);
+            this.label7.Location = new System.Drawing.Point(5, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 24);
             this.label7.TabIndex = 1194;
@@ -369,7 +394,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 198);
+            this.label2.Location = new System.Drawing.Point(6, 242);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 24);
             this.label2.TabIndex = 1192;
@@ -385,7 +410,7 @@
             this.GroupBox_FinalResult.Controls.Add(this.radioButton_FRpass);
             this.GroupBox_FinalResult.Location = new System.Drawing.Point(7, 15);
             this.GroupBox_FinalResult.Name = "GroupBox_FinalResult";
-            this.GroupBox_FinalResult.Size = new System.Drawing.Size(380, 90);
+            this.GroupBox_FinalResult.Size = new System.Drawing.Size(391, 90);
             this.GroupBox_FinalResult.TabIndex = 1191;
             this.GroupBox_FinalResult.TabStop = false;
             // 
@@ -456,7 +481,7 @@
             this.bt_FRdownload.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRdownload.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.bt_FRdownload.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRdownload.Image")));
-            this.bt_FRdownload.Location = new System.Drawing.Point(294, 558);
+            this.bt_FRdownload.Location = new System.Drawing.Point(304, 558);
             this.bt_FRdownload.Name = "bt_FRdownload";
             this.bt_FRdownload.Size = new System.Drawing.Size(70, 70);
             this.bt_FRdownload.TabIndex = 17;
@@ -468,7 +493,7 @@
             this.bt_FRfresh.BackColor = System.Drawing.Color.White;
             this.bt_FRfresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRfresh.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRfresh.Image")));
-            this.bt_FRfresh.Location = new System.Drawing.Point(154, 559);
+            this.bt_FRfresh.Location = new System.Drawing.Point(164, 559);
             this.bt_FRfresh.Name = "bt_FRfresh";
             this.bt_FRfresh.Size = new System.Drawing.Size(70, 70);
             this.bt_FRfresh.TabIndex = 16;
@@ -481,7 +506,7 @@
             this.bt_FRsearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRsearch.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.bt_FRsearch.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRsearch.Image")));
-            this.bt_FRsearch.Location = new System.Drawing.Point(19, 559);
+            this.bt_FRsearch.Location = new System.Drawing.Point(29, 559);
             this.bt_FRsearch.Name = "bt_FRsearch";
             this.bt_FRsearch.Size = new System.Drawing.Size(70, 70);
             this.bt_FRsearch.TabIndex = 15;
@@ -493,7 +518,7 @@
             this.bt_FRedit.BackColor = System.Drawing.Color.White;
             this.bt_FRedit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRedit.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRedit.Image")));
-            this.bt_FRedit.Location = new System.Drawing.Point(294, 482);
+            this.bt_FRedit.Location = new System.Drawing.Point(304, 482);
             this.bt_FRedit.Name = "bt_FRedit";
             this.bt_FRedit.Size = new System.Drawing.Size(70, 70);
             this.bt_FRedit.TabIndex = 14;
@@ -505,7 +530,7 @@
             this.bt_FRdelete.BackColor = System.Drawing.Color.White;
             this.bt_FRdelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRdelete.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRdelete.Image")));
-            this.bt_FRdelete.Location = new System.Drawing.Point(154, 482);
+            this.bt_FRdelete.Location = new System.Drawing.Point(164, 482);
             this.bt_FRdelete.Name = "bt_FRdelete";
             this.bt_FRdelete.Size = new System.Drawing.Size(70, 70);
             this.bt_FRdelete.TabIndex = 13;
@@ -517,7 +542,7 @@
             this.bt_FRadd.BackColor = System.Drawing.Color.White;
             this.bt_FRadd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_FRadd.Image = ((System.Drawing.Image)(resources.GetObject("bt_FRadd.Image")));
-            this.bt_FRadd.Location = new System.Drawing.Point(19, 482);
+            this.bt_FRadd.Location = new System.Drawing.Point(29, 482);
             this.bt_FRadd.Name = "bt_FRadd";
             this.bt_FRadd.Size = new System.Drawing.Size(70, 70);
             this.bt_FRadd.TabIndex = 12;
@@ -526,16 +551,16 @@
             // 
             // tb_FRcomment
             // 
-            this.tb_FRcomment.Location = new System.Drawing.Point(107, 352);
+            this.tb_FRcomment.Location = new System.Drawing.Point(107, 396);
             this.tb_FRcomment.Multiline = true;
             this.tb_FRcomment.Name = "tb_FRcomment";
-            this.tb_FRcomment.Size = new System.Drawing.Size(281, 114);
+            this.tb_FRcomment.Size = new System.Drawing.Size(292, 72);
             this.tb_FRcomment.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 352);
+            this.label6.Location = new System.Drawing.Point(5, 396);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 24);
             this.label6.TabIndex = 10;
@@ -545,9 +570,9 @@
             // 
             this.bt_FRuploadPicture.BackColor = System.Drawing.Color.White;
             this.bt_FRuploadPicture.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bt_FRuploadPicture.Location = new System.Drawing.Point(107, 305);
+            this.bt_FRuploadPicture.Location = new System.Drawing.Point(107, 349);
             this.bt_FRuploadPicture.Name = "bt_FRuploadPicture";
-            this.bt_FRuploadPicture.Size = new System.Drawing.Size(281, 39);
+            this.bt_FRuploadPicture.Size = new System.Drawing.Size(292, 39);
             this.bt_FRuploadPicture.TabIndex = 9;
             this.bt_FRuploadPicture.Text = "点击上传图片(png/jpg)";
             this.bt_FRuploadPicture.UseVisualStyleBackColor = false;
@@ -556,7 +581,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 311);
+            this.label5.Location = new System.Drawing.Point(5, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 24);
             this.label5.TabIndex = 8;
@@ -565,17 +590,16 @@
             // cb_FRfailureMode
             // 
             this.cb_FRfailureMode.FormattingEnabled = true;
-            this.cb_FRfailureMode.Location = new System.Drawing.Point(107, 266);
+            this.cb_FRfailureMode.Location = new System.Drawing.Point(107, 310);
             this.cb_FRfailureMode.Name = "cb_FRfailureMode";
-            this.cb_FRfailureMode.Size = new System.Drawing.Size(281, 32);
+            this.cb_FRfailureMode.Size = new System.Drawing.Size(292, 32);
             this.cb_FRfailureMode.TabIndex = 7;
             this.cb_FRfailureMode.TextChanged += new System.EventHandler(this.cb_FRfailureMode_TextChanged);
-            this.cb_FRfailureMode.Click += new System.EventHandler(this.HandleDorpdown);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 272);
+            this.label4.Location = new System.Drawing.Point(5, 316);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 24);
             this.label4.TabIndex = 6;
@@ -584,17 +608,16 @@
             // cb_FRworkStep
             // 
             this.cb_FRworkStep.FormattingEnabled = true;
-            this.cb_FRworkStep.Location = new System.Drawing.Point(107, 228);
+            this.cb_FRworkStep.Location = new System.Drawing.Point(107, 272);
             this.cb_FRworkStep.Name = "cb_FRworkStep";
-            this.cb_FRworkStep.Size = new System.Drawing.Size(281, 32);
+            this.cb_FRworkStep.Size = new System.Drawing.Size(292, 32);
             this.cb_FRworkStep.TabIndex = 5;
             this.cb_FRworkStep.TextChanged += new System.EventHandler(this.cb_FRworkStep_TextChanged);
-            this.cb_FRworkStep.Click += new System.EventHandler(this.HandleDorpdown);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 235);
+            this.label3.Location = new System.Drawing.Point(5, 279);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 24);
             this.label3.TabIndex = 4;
@@ -602,17 +625,18 @@
             // 
             // tb_FRserialNumber
             // 
-            this.tb_FRserialNumber.Location = new System.Drawing.Point(107, 117);
+            this.tb_FRserialNumber.Location = new System.Drawing.Point(107, 118);
             this.tb_FRserialNumber.Name = "tb_FRserialNumber";
-            this.tb_FRserialNumber.Size = new System.Drawing.Size(280, 31);
+            this.tb_FRserialNumber.Size = new System.Drawing.Size(291, 31);
             this.tb_FRserialNumber.TabIndex = 1;
+            this.tb_FRserialNumber.TextChanged += new System.EventHandler(this.tb_FRserialNumber_TextChanged);
             this.tb_FRserialNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_FRserialNumber_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(5, 122);
+            this.label1.Location = new System.Drawing.Point(5, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 0;
@@ -709,7 +733,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_FRserialNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cb_FRproductFamily;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView_failureRecord;
         private System.Windows.Forms.PictureBox pictureBox_FailureRecord;
@@ -718,10 +741,15 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关闭ToolStripMenuItem;
+        private System.Windows.Forms.TextBox tb_producType;
+        private System.Windows.Forms.RadioButton radioButton_FRrework;
         private System.Windows.Forms.TextBox tb_productName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tb_productFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductType;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkStepProcessName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FailureMode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
@@ -731,6 +759,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ModifyUserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModifyTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.RadioButton radioButton_FRrework;
     }
 }

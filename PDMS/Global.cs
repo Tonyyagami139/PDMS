@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,5 +27,21 @@ namespace PDMS
         public static string LogoPicture { get; set; } = "\\\\192.168.31.223\\TestingDataRoot\\PDMS\\FailureRecord\\logo.png";
 
         public static string UserDataPath = "C:\\ProgramData\\zTx\\PDMS\\user.dat";
+
+
+
+        public static string GetAppVersion()
+        {
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                var version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                return version.ToString();
+            }
+            else
+            {
+                // 获取当前程序集的版本信息
+                return "Local Build";
+            }
+        }
     }
 }

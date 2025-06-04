@@ -20,6 +20,7 @@ namespace Dal
         public bool Login(string userName, string password)
         {
             string pwd = userBll.Login(userName);
+            if (string.IsNullOrEmpty(pwd)) return false;
             string md5Password = Md5Helper.GetMd5Hash(password);
 
             if (md5Password.ToUpper() == pwd.ToUpper())

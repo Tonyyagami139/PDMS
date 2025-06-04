@@ -98,11 +98,12 @@ namespace Bll
 
         public void AddFailureRecord(FailureRecord fr)
         {
-            string query = "INSERT INTO FailureRecord (SerialNumber,ProductName,ProductFamily,WorkStepProcessName,FailureMode,CreateUserName,CreateTime,ModifyUserName,ModifyTime,Comment,PictureFileName,Status) VALUES (@SerialNumber,@ProductName,@ProductFamily,@WorkStepProcessName,@FailureMode,@CreateUserName,@CreateTime,@ModifyUserName,@ModifyTime,@Comment,@PictureFileName,@Status)";
+            string query = "INSERT INTO FailureRecord (SerialNumber,ProductName,ProductType,ProductFamily,WorkStepProcessName,FailureMode,CreateUserName,CreateTime,ModifyUserName,ModifyTime,Comment,PictureFileName,Status) VALUES (@SerialNumber,@ProductName,@ProductType,@ProductFamily,@WorkStepProcessName,@FailureMode,@CreateUserName,@CreateTime,@ModifyUserName,@ModifyTime,@Comment,@PictureFileName,@Status)";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@SerialNumber", fr.SerialNumber),
                 new SqlParameter("@ProductName", fr.ProductName),
+                new SqlParameter("@ProductType", fr.ProductType),
                 new SqlParameter("@ProductFamily", fr.ProductFamily),
                 new SqlParameter("@WorkStepProcessName", fr.WorkStepProcessName),
                 new SqlParameter("@FailureMode", fr.FailureMode),
@@ -158,6 +159,7 @@ namespace Bll
                 fr.Id = Convert.ToInt32(row["Id"]);
                 fr.SerialNumber = row["SerialNumber"].ToString();
                 fr.ProductName = row["ProductName"].ToString();
+                fr.ProductType = row["ProductType"].ToString();
                 fr.ProductFamily = row["ProductFamily"].ToString();
                 fr.WorkStepProcessName = row["WorkStepProcessName"].ToString();
                 fr.FailureMode = row["FailureMode"].ToString();
@@ -190,6 +192,7 @@ namespace Bll
                 fr.Id = Convert.ToInt32(dataTable.Rows[0]["Id"]);
                 fr.SerialNumber = dataTable.Rows[0]["SerialNumber"].ToString();
                 fr.ProductName = dataTable.Rows[0]["ProductName"].ToString();
+                fr.ProductType = dataTable.Rows[0]["ProductType"].ToString();
                 fr.ProductFamily = dataTable.Rows[0]["ProductFamily"].ToString();
                 fr.WorkStepProcessName = dataTable.Rows[0]["WorkStepProcessName"].ToString();
                 fr.FailureMode = dataTable.Rows[0]["FailureMode"].ToString();
@@ -216,6 +219,7 @@ namespace Bll
                 new SqlParameter("@Id", fr.Id),
                 new SqlParameter("@SerialNumber", fr.SerialNumber),
                 new SqlParameter("@ProductName", fr.ProductName),
+                new SqlParameter("@ProductType", fr.ProductType),
                 new SqlParameter("@ProductFamily", fr.ProductFamily),
                 new SqlParameter("@WorkStepProcessName", fr.WorkStepProcessName),
                 new SqlParameter("@FailureMode", fr.FailureMode),

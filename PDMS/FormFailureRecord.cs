@@ -10,8 +10,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -31,8 +33,11 @@ namespace PDMS
 
         //Lists for combobox
         public List<string> FailureModeList { get; set; }
+        public List<string> FilteredFailureModes { get; set; }
         public List<string> ProcessesList { get; set; }
-        public List<string> ProductFamilyList { get; set; }
+
+        public List<string> FilteredProcesses { get; set; }
+        public List<FailureRecord_ProductInfo> ProductInfoList { get; set; }
 
         //public List<string> ProductNameList { get; set; } // too many, remove it for now 
 
@@ -64,7 +69,7 @@ namespace PDMS
                     ApplyFilter(dataGridView_failureRecord, filterBox.Tag as int?, filterBox.Text);
                     //filterBox.Visible = false;
                 }
-             };
+            };
             // 将TextBox控件添加到DataGridView控件层级中
             dataGridView_failureRecord.Controls.Add(filterBox);
             // 3. 列头点击事件
@@ -85,7 +90,7 @@ namespace PDMS
                         // 记录当前要筛选的列索引
                         filterBox.Tag = e.ColumnIndex;
                         //filterBox.Location = new Point(headerRect.Right - filterBox.Width, headerRect.Bottom);
-                        filterBox.Location = new Point(headerRect.Left,headerRect.Bottom);
+                        filterBox.Location = new Point(headerRect.Left, headerRect.Bottom);
                         filterBox.Text = "";
                         filterBox.Visible = true;
                         filterBox.Focus();
@@ -102,7 +107,7 @@ namespace PDMS
             // 如果未输入内容则清除筛选
             if (string.IsNullOrWhiteSpace(filterText))
             {
-                
+
             }
             else
             {
@@ -114,9 +119,10 @@ namespace PDMS
                 dataGridView_failureRecord.DataSource = FilteredRecords;
             }
         }
-
         private void FormInitial()
         {
+            var version = Global.GetAppVersion();
+            this.Text = $"FailureRecord - {version.ToString()}";
             //增加列筛选图标
             dataGridView_failureRecord.CellPainting += (s, e) =>
             {
@@ -138,9 +144,10 @@ namespace PDMS
             facade = new FormFacade(this);
             try
             {
+                facade.CopyConfigs2Local();
+                ProductInfoList = facade.ReadProductInfo();
                 FailureModeList = facade.GetFailureModes();
                 ProcessesList = facade.GetProcesses();
-                ProductFamilyList = facade.GetProductFamilies();
             }
             catch
             {
@@ -170,36 +177,37 @@ namespace PDMS
             FailureRecordList = dal.GetFailureRecords();
             dataGridView_failureRecord.DataSource = FailureRecordList;
         }
-
         private void ClearField()
         {
             tb_FRserialNumber.Text = "";
-
+            tb_productFamily.Text = "";
+            tb_producType.Text = "";
             tb_productName.Text = "";
             tb_FRcomment.Text = "";
-            cb_FRfailureMode.Items.Clear();
-            cb_FRproductFamily.Items.Clear();
-            cb_FRworkStep.Items.Clear();
-            cb_FRfailureMode.Text = "";
-            cb_FRproductFamily.Text = "";
-            cb_FRworkStep.Text = "";
+
             radioButton_FRpass.Checked = false;
             radioButton_FRfail.Checked = false;
             radioButton_FRhold.Checked = false;
             radioButton_FRrework.Checked = false;
             radioButton_FRquarantine.Checked = false;
-            cb_FRworkStep.Items.AddRange(ProcessesList.ToArray());
-            cb_FRproductFamily.Items.AddRange(ProductFamilyList.ToArray());
-            cb_FRfailureMode.Items.AddRange(FailureModeList.ToArray());
+
+            cb_FRfailureMode.DataSource = null;
+            cb_FRworkStep.DataSource = null;
+            cb_FRfailureMode.Items.Clear();
+            cb_FRworkStep.Items.Clear();
+            cb_FRfailureMode.DataSource = FailureModeList;
+            cb_FRworkStep.DataSource = ProcessesList;
+            cb_FRfailureMode.Text = "";
+            cb_FRworkStep.Text = "";
 
             SelectedFailureRecord = null;
             Image image = Image.FromFile(Global.LogoPicture);
             pictureBox_FailureRecord.Image = image;
             bt_FRuploadPicture.BackColor = Color.White;
 
+            radioButton_FRhold.Checked = true;
+
         }
-
-
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             System.Windows.Forms.RadioButton rb = sender as System.Windows.Forms.RadioButton;
@@ -208,7 +216,6 @@ namespace PDMS
                 CurrentStatus = rb.Text;
             }
         }
-
         private void bt_FRuploadPicture_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -241,12 +248,10 @@ namespace PDMS
             CurrentPictureFileName = PicSavePath;
             bt_FRuploadPicture.BackColor = Color.Green;
         }
-
         private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void lb_finalResult_Click(object sender, EventArgs e)
         {
             radioButton_FRpass.Checked = false;
@@ -256,12 +261,11 @@ namespace PDMS
             radioButton_FRquarantine.Checked = false;
             CurrentStatus = "";
         }
-
         private void bt_FRdelete_Click(object sender, EventArgs e)
         {
             if (SelectedFailureRecord == null) facade.FailureRecordShowLog(tb_FRlog, "请选择要删除的记录。");
             DialogResult result = MessageBox.Show("确定要删除这条记录吗？", "确认删除", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            
+
             // 检查用户的选择
             if (result == DialogResult.Yes)
             {
@@ -276,7 +280,6 @@ namespace PDMS
                 facade.FailureRecordShowLog(tb_FRlog, "删除操作已取消。");
             }
         }
-
         private void dataGridView_failureRecord_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // 检查双击的行索引是否有效
@@ -290,7 +293,6 @@ namespace PDMS
             var fr = dal.GetFailureRecord(id);
             FailureRecordInfo2Form(fr);
         }
-
         private void dataGridView_failureRecord_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView_failureRecord.Columns[e.ColumnIndex].Name == "Status")
@@ -325,20 +327,26 @@ namespace PDMS
                 }
             }
         }
-
         private void bt_FRfresh_Click(object sender, EventArgs e)
         {
             ClearField();
             FailureRecordList = dal.GetFailureRecords();
             dataGridView_failureRecord.DataSource = FailureRecordList;
         }
-
         private void bt_FRadd_Click(object sender, EventArgs e)
         {
             var failureRecord = FormInfo2FailureRecord();
+            failureRecord.Status = "Hold"; // 默认状态为Hold
+
             if (string.IsNullOrEmpty(failureRecord.SerialNumber))
             {
                 facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不能为空");
+                return;
+            }
+
+            if (dal.IsSerialNumberExist(failureRecord.SerialNumber))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:序列已存在，无法新增。");
                 return;
             }
             if (string.IsNullOrEmpty(failureRecord.ProductName))
@@ -386,18 +394,29 @@ namespace PDMS
 
 
         }
-
         private void FailureRecordInfo2Form(FailureRecord fr)
-        {
+        {        
             SelectedFailureRecord = fr;
-            tb_FRserialNumber.Text = SelectedFailureRecord.SerialNumber;
-            tb_productName.Text = SelectedFailureRecord.ProductName;
-            cb_FRproductFamily.Text = SelectedFailureRecord.ProductFamily;
+
+            cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
+            cb_FRfailureMode.TextChanged -= cb_FRfailureMode_TextChanged;
             cb_FRworkStep.Text = SelectedFailureRecord.WorkStepProcessName;
             cb_FRfailureMode.Text = SelectedFailureRecord.FailureMode;
+            cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
+            cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
+
+
+            tb_FRserialNumber.Text = SelectedFailureRecord.SerialNumber;
+            tb_producType.Text = SelectedFailureRecord.ProductType;
+            tb_productFamily.Text = SelectedFailureRecord.ProductFamily;
+            tb_productName.Text = SelectedFailureRecord.ProductName;
             tb_FRcomment.Text = SelectedFailureRecord.Comment;
             tb_FRlog.Text = "";
-            pictureBox_FailureRecord.Image = Image.FromFile(SelectedFailureRecord.PictureFileName);
+            try
+            {
+                pictureBox_FailureRecord.Image = Image.FromFile(SelectedFailureRecord.PictureFileName);
+            }
+            catch { pictureBox_FailureRecord.Image = Image.FromFile(Global.DefaultPicturePath); }
 
             CurrentPictureFileName = SelectedFailureRecord.PictureFileName;
             CurrentStatus = SelectedFailureRecord.Status;
@@ -420,6 +439,11 @@ namespace PDMS
                     radioButton_FRquarantine.Checked = true;
                     break;
                 default:
+                    radioButton_FRpass.Checked = false;
+                    radioButton_FRfail.Checked = false;
+                    radioButton_FRhold.Checked = false;
+                    radioButton_FRrework.Checked = false;
+                    radioButton_FRquarantine.Checked = false;
                     break;
             }
         }
@@ -436,7 +460,8 @@ namespace PDMS
                         : "";
             fr.SerialNumber = tb_FRserialNumber.Text;
             fr.ProductName = tb_productName.Text;
-            fr.ProductFamily = cb_FRproductFamily.Text;
+            fr.ProductFamily = tb_productFamily.Text;
+            fr.ProductType = tb_producType.Text;
             fr.WorkStepProcessName = cb_FRworkStep.Text;
             fr.FailureMode = cb_FRfailureMode.Text;
             fr.Comment = tb_FRcomment.Text;
@@ -459,54 +484,51 @@ namespace PDMS
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
-        private void cb_FRproductFamily_TextChanged(object sender, EventArgs e)
-        {
 
-            string text = cb_FRproductFamily.Text;
-            int selStart = cb_FRproductFamily.SelectionStart;
-
-            // 筛选（模糊包含）
-            var filtered = ProductFamilyList
-                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
-                .ToList();
-
-            cb_FRproductFamily.TextChanged -= cb_FRproductFamily_TextChanged;
-            cb_FRproductFamily.Items.Clear();
-            cb_FRproductFamily.Items.AddRange(filtered.ToArray());
-            cb_FRproductFamily.Text = text;
-            cb_FRproductFamily.SelectionStart = selStart;
-            cb_FRproductFamily.TextChanged += cb_FRproductFamily_TextChanged;
-
-        }
- 
 
         private void cb_FRworkStep_TextChanged(object sender, EventArgs e)
         {
 
-            // 记录当前输入内容与光标位置，便于刷新后恢复
-            string text = cb_FRworkStep.Text;
-            int selStart = cb_FRworkStep.SelectionStart;
 
-            // 根据当前输入，筛选原始列表（模糊匹配，包含即可，不区分大小写）
-            var filtered = ProcessesList
-                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
-                .ToList();
+            try
+            {
+                if (isFiltering) return; // 防止程序赋值导致的递归
 
-            // 防止修改Items时递归触发TextChanged，先移除事件
-            cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
+                string input = cb_FRworkStep.Text;
+                if (string.IsNullOrEmpty(input)) return;
 
-            // 用筛选结果替换下拉列表
-            cb_FRworkStep.Items.Clear();
-            cb_FRworkStep.Items.AddRange(filtered.ToArray());
+                int selStart = cb_FRworkStep.SelectionStart;
 
-            // 还原输入内容和光标位置（不还原会导致输入卡顿或乱跳）
-            cb_FRworkStep.Text = text;
-            cb_FRworkStep.SelectionStart = selStart;
+                // 1. 筛选
+                var filtered = ProcessesList
+                    .Where(x => x.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .ToList();
 
-            // 恢复事件
-            cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
+                // 只有一个匹配且和输入一致，不再筛选，避免下拉覆盖
+                if (filtered.Count == 1 && filtered[0].Equals(input, StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
 
- 
+                // 2. 刷新数据源
+                isFiltering = true;
+                Thread.Sleep(50);
+                cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
+
+                cb_FRworkStep.DataSource = null;
+                cb_FRworkStep.Items.Clear();
+                cb_FRworkStep.DataSource = filtered;
+
+                cb_FRworkStep.Text = input;
+                cb_FRworkStep.SelectionStart = selStart;
+
+                cb_FRworkStep.DroppedDown = true;
+
+                cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
+                isFiltering = false;
+            }
+            catch { isFiltering = false; }
+
         }
 
         private void bt_FRdownload_Click(object sender, EventArgs e)
@@ -539,7 +561,8 @@ namespace PDMS
         private void bt_FRsearch_Click(object sender, EventArgs e)
         {
             string sn = tb_FRserialNumber.Text;
-            string productFamily = cb_FRproductFamily.Text.Trim();
+            string productFamily = tb_productFamily.Text.Trim();
+            string productType = tb_producType.Text.Trim();
             string productName = tb_productName.Text.Trim();
             string workStep = cb_FRworkStep.Text.Trim();
             FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
@@ -558,6 +581,10 @@ namespace PDMS
                 // WorkStepProcessName 筛选
                 (string.IsNullOrEmpty(workStep) ||
                  (fr.WorkStepProcessName ?? "").IndexOf(workStep, StringComparison.OrdinalIgnoreCase) >= 0)
+                 &&
+                // ProductType 筛选
+                (string.IsNullOrEmpty(productType) ||
+                 (fr.ProductType ?? "").IndexOf(productType, StringComparison.OrdinalIgnoreCase) >= 0)
             ).ToList();
 
             FailureRecordList = filtered;
@@ -584,25 +611,26 @@ namespace PDMS
             SelectedFailureRecord.SerialNumber = tb_FRserialNumber.Text.Trim();
             SelectedFailureRecord.CreateTime = tempFailureRecord.CreateTime;
             SelectedFailureRecord.CreateUserName = tempFailureRecord.CreateUserName;
-            SelectedFailureRecord.ProductFamily = cb_FRproductFamily.Text.Trim();
+            SelectedFailureRecord.ProductFamily = tb_productFamily.Text.Trim();
+            SelectedFailureRecord.ProductType = tb_producType.Text.Trim();
             SelectedFailureRecord.ProductName = tb_productName.Text.Trim();
             SelectedFailureRecord.WorkStepProcessName = cb_FRworkStep.Text.Trim();
             SelectedFailureRecord.Comment = tb_FRcomment.Text.Replace("\t", " ").Replace("\r", " ").Replace("\n", " ");
             SelectedFailureRecord.FailureMode = cb_FRfailureMode.Text;
             SelectedFailureRecord.ModifyUserName = Global.UserName;
             SelectedFailureRecord.ModifyTime = DateTime.Now;
-            SelectedFailureRecord.Status = radioButton_FRpass.Checked ? "Pass" : radioButton_FRfail.Checked ? "Fail" : radioButton_FRhold.Checked ? "Hold" : radioButton_FRrework.Checked ? "Rework" : radioButton_FRquarantine.Checked? "Quarantine":"";
-            SelectedFailureRecord.PictureFileName = CurrentPictureFileName??Global.DefaultPicturePath;
+            SelectedFailureRecord.Status = radioButton_FRpass.Checked ? "Pass" : radioButton_FRfail.Checked ? "Fail" : radioButton_FRhold.Checked ? "Hold" : radioButton_FRrework.Checked ? "Rework" : radioButton_FRquarantine.Checked ? "Quarantine" : "";
+            SelectedFailureRecord.PictureFileName = CurrentPictureFileName ?? Global.DefaultPicturePath;
             if (dal.UpdateFailureRecord(SelectedFailureRecord))
             {
                 facade.FailureRecordShowLog(tb_FRlog, "更新成功。");
-                var product = SelectedFailureRecord.ProductName;
+                var product = SelectedFailureRecord.ProductType;
                 bt_FRfresh.PerformClick();
 
                 PerformSearchProductAfterEdit(product);
 
             }
-            else 
+            else
             {
                 facade.FailureRecordShowLog(tb_FRlog, "更新失败。");
             }
@@ -610,42 +638,11 @@ namespace PDMS
 
         private void PerformSearchProductAfterEdit(string product)
         {
-            tb_productName.Text = product;
+            tb_producType.Text = product;
             bt_FRsearch.PerformClick();
         }
 
-        private void HandleDorpdown(object sender, EventArgs e)
-        {
-            if (sender is System.Windows.Forms.ComboBox)
-            {
-                int dropWidth = SystemInformation.VerticalScrollBarWidth;
-                var cb = (System.Windows.Forms.ComboBox)sender;
-                Rectangle textRect = new Rectangle(0, 0, cb.Width - dropWidth, cb.Height);
-                var em = (MouseEventArgs)e;
-                if (textRect.Contains(em.Location))
-                {
-                    cb.DroppedDown = !cb.DroppedDown;
-                }
-            }
-        }
 
-        private void cb_FRfailureMode_TextChanged(object sender, EventArgs e)
-        {
-            string text = cb_FRfailureMode.Text;
-            int selStart = cb_FRfailureMode.SelectionStart;
-
-            // 筛选（模糊包含）
-            var filtered = FailureModeList
-                .Where(item => item.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)
-                .ToList();
-
-            cb_FRfailureMode.TextChanged -= cb_FRfailureMode_TextChanged;
-            cb_FRfailureMode.Items.Clear();
-            cb_FRfailureMode.Items.AddRange(filtered.ToArray());
-            cb_FRfailureMode.Text = text;
-            cb_FRfailureMode.SelectionStart = selStart;
-            cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
-        }
 
         private void dataGridView_failureRecord_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -680,6 +677,109 @@ namespace PDMS
         private object GetPropertyValue(object obj, string propertyName)
         {
             return obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+        }
+
+        private void tb_FRserialNumber_TextChanged(object sender, EventArgs e)
+        {
+            string input = tb_FRserialNumber.Text.Trim();
+
+            if (string.IsNullOrEmpty(input))
+            {
+                // 清空相关字段
+                tb_productFamily.Text = "";
+                tb_producType.Text = "";
+                tb_productName.Text = "";
+                return;
+            }
+
+            // 筛选ProductInfoList，找出ProductType以输入内容开头的项
+            var matched = ProductInfoList
+                .Where(p => !string.IsNullOrEmpty(p.ProductType) && input.StartsWith(p.ProductType, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (matched.Count == 1)
+            {
+                // 只匹配到一个，自动填充
+                tb_productFamily.Text = matched[0].ProductFamily ?? "";
+                tb_producType.Text = matched[0].ProductType ?? "";
+                tb_productName.Text = matched[0].ProductName ?? "";
+            }
+            else if (matched.Count < 1)
+            {
+                // 没有匹配，清空填充
+                tb_productFamily.Text = "";
+                tb_producType.Text = "";
+                tb_productName.Text = "";
+            }
+            else
+            {
+                // 匹配到多个，自动填充最后一个
+                tb_productFamily.Text = matched.Last().ProductFamily ?? "";
+                tb_producType.Text = matched.Last().ProductType ?? "";
+                tb_productName.Text = matched.Last().ProductName ?? "";
+            }
+        }
+
+        private bool isFiltering = false;
+        private void cb_FRfailureMode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // 防止程序赋值触发时递归
+                if (isFiltering) return;
+
+                string input = cb_FRfailureMode.Text;
+                if (string.IsNullOrEmpty(input)) return;
+
+                int selStart = cb_FRfailureMode.SelectionStart;
+
+                // 1. 筛选
+                var filtered = FailureModeList
+                    .Where(x => x.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .ToList();
+
+                // 如果只有一个匹配项且输入等于它，不做任何事，防止后续逻辑干扰
+                if (filtered.Count == 1 && filtered[0].Equals(input, StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+
+                // 2. 刷新数据源
+                isFiltering = true; // 开始程序筛选
+                Thread.Sleep(50);
+                cb_FRfailureMode.TextChanged -= cb_FRfailureMode_TextChanged;
+
+                cb_FRfailureMode.DataSource = null;
+                cb_FRfailureMode.Items.Clear();
+                cb_FRfailureMode.DataSource = filtered;
+
+                // 恢复输入
+                cb_FRfailureMode.Text = input;
+                cb_FRfailureMode.SelectionStart = selStart;
+
+                cb_FRfailureMode.DroppedDown = true; // 自动弹出下拉
+                cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
+                isFiltering = false; // 结束
+            }
+            catch
+            {
+                isFiltering = false; // 结束
+            }
+
+        }
+
+        private void dataGridView_failureRecord_CurrentCellChanged(object sender, EventArgs e)
+        {
+            //if (dataGridView_failureRecord.CurrentRow == null) return;
+            
+            //var selectedRow = dataGridView_failureRecord.CurrentRow;
+            //var idstr = selectedRow.Cells["Id"].Value?.ToString();
+            //if (string.IsNullOrEmpty(idstr)) return;
+            //var id = Convert.ToInt32(idstr);
+
+            //FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
+            //var fr = dal.GetFailureRecord(id);
+            //FailureRecordInfo2Form(fr);
         }
     }
 }
