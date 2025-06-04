@@ -149,6 +149,8 @@
             this.groupBox1.Size = new System.Drawing.Size(396, 145);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Text = "登录信息";
             // 
             // FormLogIn
             // 
@@ -163,6 +165,8 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.AcceptButton = this.bt_login;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormLogIn";
             this.Text = "PDMS";
