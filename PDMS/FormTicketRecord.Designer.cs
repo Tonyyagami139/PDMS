@@ -40,6 +40,7 @@ namespace PDMS
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             this.tableLayoutPanel1 = new TableLayoutPanel();
             this.panelLeft = new Panel();
             this.dataGridViewTickets = new DataGridView();
@@ -112,6 +113,8 @@ namespace PDMS
             // 
             this.dataGridViewTickets.Dock = DockStyle.Fill;
             this.dataGridViewTickets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTickets.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTickets.MultiSelect = false;
             // 
