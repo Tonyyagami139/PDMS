@@ -65,14 +65,21 @@ CREATE TABLE TicketLog(
             Db.ExecuteQuery(query, parameters);
         }
 
-        public void DeleteTicket(int id)
+        public void DeleteTicket(int id, string modifyUserName)
         {
+            var ticket = GetTicket(id);
             string query = "DELETE FROM Ticket WHERE Id=@Id";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Id", id)
             };
             Db.ExecuteQuery(query, parameters);
+            if (ticket != null)
+            {
+                ticket.ModifyUserName = modifyUserName;
+                ticket.ModifyTime = DateTime.Now;
+                AddTicketLog(ticket);
+            }
         }
 
         public void UpdateTicket(Ticket ticket)
