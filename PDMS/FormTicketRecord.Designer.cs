@@ -23,6 +23,7 @@ namespace PDMS
             this.radioButton_pending = new System.Windows.Forms.RadioButton();
             this.radioButton_inProgress = new System.Windows.Forms.RadioButton();
             this.radioButton_finished = new System.Windows.Forms.RadioButton();
+            this.radioButton_created = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_description = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,7 +65,8 @@ namespace PDMS
             this.dataGridView_tickets.Size = new System.Drawing.Size(800, 240);
             this.dataGridView_tickets.TabIndex = 0;
             this.dataGridView_tickets.SelectionChanged += new System.EventHandler(this.dataGridView_tickets_SelectionChanged);
-            // 
+            this.dataGridView_tickets.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_tickets_CellFormatting);
+            //
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.bt_delete);
@@ -73,6 +75,7 @@ namespace PDMS
             this.groupBox1.Controls.Add(this.bt_search);
             this.groupBox1.Controls.Add(this.tb_search);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.radioButton_created);
             this.groupBox1.Controls.Add(this.radioButton_finished);
             this.groupBox1.Controls.Add(this.radioButton_inProgress);
             this.groupBox1.Controls.Add(this.radioButton_pending);
@@ -198,7 +201,18 @@ namespace PDMS
             this.radioButton_finished.TabStop = true;
             this.radioButton_finished.Text = "Finished";
             this.radioButton_finished.UseVisualStyleBackColor = true;
-            // 
+            //
+            // radioButton_created
+            //
+            this.radioButton_created.AutoSize = true;
+            this.radioButton_created.Location = new System.Drawing.Point(374, 116);
+            this.radioButton_created.Name = "radioButton_created";
+            this.radioButton_created.Size = new System.Drawing.Size(71, 19);
+            this.radioButton_created.TabIndex = 8;
+            this.radioButton_created.TabStop = true;
+            this.radioButton_created.Text = "Created";
+            this.radioButton_created.UseVisualStyleBackColor = true;
+            //
             // label3
             // 
             this.label3.AutoSize = true;
@@ -268,6 +282,7 @@ namespace PDMS
         private System.Windows.Forms.RadioButton radioButton_pending;
         private System.Windows.Forms.RadioButton radioButton_inProgress;
         private System.Windows.Forms.RadioButton radioButton_finished;
+        private System.Windows.Forms.RadioButton radioButton_created;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Label label2;
