@@ -32,6 +32,7 @@ namespace PDMS
         {
             this.BackgroundImageLayout = ImageLayout.Center;
             失效记录ToolStripMenuItem.Enabled = false;
+            工单记录ToolStripMenuItem.Enabled = false;
             失效记录ToolStripMenuItem.ForeColor = Color.White;
             menuStrip1.RenderMode = ToolStripRenderMode.System;
             menuStrip1.BackColor = Color.RoyalBlue;
@@ -116,6 +117,7 @@ namespace PDMS
         private void HandleCommonAccess()
         {
             失效记录ToolStripMenuItem.Enabled = true;
+            工单记录ToolStripMenuItem.Enabled = true;
         }
 
         private void HandleUserAccess(bool enable)
@@ -132,6 +134,12 @@ namespace PDMS
         {
             FormFailureRecord formFailureRecord = new FormFailureRecord();
             formFailureRecord.Show();
+        }
+
+        private void 工单记录ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTicketRecord formTicketRecord = new FormTicketRecord();
+            formTicketRecord.Show();
         }
     }
 }
