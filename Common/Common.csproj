@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="FailureRecord.cs" />
     <Compile Include="FailureRecord_ProductInfo.cs" />
+    <Compile Include="Ticket.cs" />
     <Compile Include="FastExcelException.cs" />
     <Compile Include="FastExcelWorkbook.cs" />
     <Compile Include="FastExcelWorksheet.cs" />
