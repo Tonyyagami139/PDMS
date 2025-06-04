@@ -26,12 +26,10 @@ namespace PDMS
             dataGridView_tickets.ColumnHeaderMouseClick += dataGridView_tickets_ColumnHeaderMouseClick;
             dataGridView_tickets.CellClick += dataGridView_tickets_CellClick;
             dataGridView_tickets.CellFormatting += dataGridView_tickets_CellFormatting;
-            radioButton_pending.CheckedChanged += RadioButton_CheckedChanged;
-            radioButton_inProgress.CheckedChanged += RadioButton_CheckedChanged;
-            radioButton_finished.CheckedChanged += RadioButton_CheckedChanged;
-            radioButton_created.CheckedChanged += RadioButton_CheckedChanged;
-            radioButton_pending.Checked = true;
-            CurrentStatus = radioButton_pending.Text;
+            cb_status.SelectedIndexChanged += cb_status_SelectedIndexChanged;
+            cb_status.SelectedIndex = 0;
+            cb_priority.SelectedIndex = 0;
+            CurrentStatus = cb_status.Text;
         }
 
         private void RefreshTickets()
@@ -45,28 +43,11 @@ namespace PDMS
             Ticket ticket = (Ticket)dataGridView_tickets.CurrentRow.DataBoundItem;
             tb_title.Text = ticket.Title;
             tb_description.Text = ticket.Description;
+            cb_priority.Text = ticket.Priority;
+            tb_assignee.Text = ticket.Assignee;
+            tb_attachments.Text = ticket.Attachments;
+            cb_status.Text = ticket.Status;
             CurrentStatus = ticket.Status;
-            switch (ticket.Status)
-            {
-                case "Pending":
-                    radioButton_pending.Checked = true;
-                    break;
-                case "InProgress":
-                    radioButton_inProgress.Checked = true;
-                    break;
-                case "Finished":
-                    radioButton_finished.Checked = true;
-                    break;
-                case "Created":
-                    radioButton_created.Checked = true;
-                    break;
-                default:
-                    radioButton_pending.Checked = false;
-                    radioButton_inProgress.Checked = false;
-                    radioButton_finished.Checked = false;
-                    radioButton_created.Checked = false;
-                    break;
-            }
         }
 
         private void SearchTickets()
@@ -80,7 +61,10 @@ namespace PDMS
             {
                 Title = tb_title.Text,
                 Description = tb_description.Text,
-                Status = CurrentStatus,
+                Status = cb_status.Text,
+                Priority = cb_priority.Text,
+                Assignee = tb_assignee.Text,
+                Attachments = tb_attachments.Text,
                 CreateUserName = Global.UserName,
                 CreateTime = DateTime.Now,
                 ModifyUserName = Global.UserName,
@@ -96,7 +80,10 @@ namespace PDMS
             Ticket ticket = (Ticket)dataGridView_tickets.CurrentRow.DataBoundItem;
             ticket.Title = tb_title.Text;
             ticket.Description = tb_description.Text;
-            ticket.Status = CurrentStatus;
+            ticket.Status = cb_status.Text;
+            ticket.Priority = cb_priority.Text;
+            ticket.Assignee = tb_assignee.Text;
+            ticket.Attachments = tb_attachments.Text;
             ticket.ModifyUserName = Global.UserName;
             ticket.ModifyTime = DateTime.Now;
             dal.UpdateTicket(ticket);
@@ -128,13 +115,17 @@ namespace PDMS
                 string status = e.Value.ToString();
                 switch (status)
                 {
-                    case "Created":
+                    case "New":
                         e.CellStyle.BackColor = Color.White;
                         e.CellStyle.ForeColor = Color.Red;
                         break;
                     case "Finished":
                         e.CellStyle.BackColor = Color.White;
                         e.CellStyle.ForeColor = Color.Green;
+                        break;
+                    case "Closed":
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.ForeColor = Color.Gray;
                         break;
                     default:
                         e.CellStyle.BackColor = Color.White;
@@ -167,12 +158,18 @@ namespace PDMS
             dataGridView_tickets.DataSource = list;
         }
 
-        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        private void cb_status_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RadioButton rb = sender as RadioButton;
-            if (rb != null && rb.Checked)
+            CurrentStatus = cb_status.Text;
+        }
+
+        private void bt_browse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                CurrentStatus = rb.Text;
+                tb_attachments.Text = string.Join(";", ofd.FileNames);
             }
         }
     }

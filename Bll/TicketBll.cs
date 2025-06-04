@@ -32,6 +32,9 @@ CREATE TABLE Ticket(
     Title NVARCHAR(100),
     Description NVARCHAR(MAX),
     Status NVARCHAR(50),
+    Priority NVARCHAR(20),
+    Assignee NVARCHAR(50),
+    Attachments NVARCHAR(MAX),
     CreateUserName NVARCHAR(50),
     CreateTime DATETIME,
     ModifyUserName NVARCHAR(50),
@@ -43,6 +46,9 @@ CREATE TABLE TicketLog(
     Title NVARCHAR(100),
     Description NVARCHAR(MAX),
     Status NVARCHAR(50),
+    Priority NVARCHAR(20),
+    Assignee NVARCHAR(50),
+    Attachments NVARCHAR(MAX),
     ModifyUserName NVARCHAR(50),
     ModifyTime DATETIME
 )";
@@ -51,12 +57,15 @@ CREATE TABLE TicketLog(
 
         public void AddTicket(Ticket ticket)
         {
-            string query = "INSERT INTO Ticket (Title,Description,Status,CreateUserName,CreateTime,ModifyUserName,ModifyTime) VALUES (@Title,@Description,@Status,@CreateUserName,@CreateTime,@ModifyUserName,@ModifyTime)";
+            string query = "INSERT INTO Ticket (Title,Description,Status,Priority,Assignee,Attachments,CreateUserName,CreateTime,ModifyUserName,ModifyTime) VALUES (@Title,@Description,@Status,@Priority,@Assignee,@Attachments,@CreateUserName,@CreateTime,@ModifyUserName,@ModifyTime)";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Title", ticket.Title),
                 new SqlParameter("@Description", ticket.Description),
                 new SqlParameter("@Status", ticket.Status),
+                new SqlParameter("@Priority", ticket.Priority),
+                new SqlParameter("@Assignee", ticket.Assignee),
+                new SqlParameter("@Attachments", ticket.Attachments),
                 new SqlParameter("@CreateUserName", ticket.CreateUserName),
                 new SqlParameter("@CreateTime", ticket.CreateTime),
                 new SqlParameter("@ModifyUserName", ticket.ModifyUserName),
@@ -84,12 +93,15 @@ CREATE TABLE TicketLog(
 
         public void UpdateTicket(Ticket ticket)
         {
-            string query = "UPDATE Ticket SET Title=@Title,Description=@Description,Status=@Status,ModifyUserName=@ModifyUserName,ModifyTime=@ModifyTime WHERE Id=@Id";
+            string query = "UPDATE Ticket SET Title=@Title,Description=@Description,Status=@Status,Priority=@Priority,Assignee=@Assignee,Attachments=@Attachments,ModifyUserName=@ModifyUserName,ModifyTime=@ModifyTime WHERE Id=@Id";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Title", ticket.Title),
                 new SqlParameter("@Description", ticket.Description),
                 new SqlParameter("@Status", ticket.Status),
+                new SqlParameter("@Priority", ticket.Priority),
+                new SqlParameter("@Assignee", ticket.Assignee),
+                new SqlParameter("@Attachments", ticket.Attachments),
                 new SqlParameter("@ModifyUserName", ticket.ModifyUserName),
                 new SqlParameter("@ModifyTime", ticket.ModifyTime),
                 new SqlParameter("@Id", ticket.Id)
@@ -152,13 +164,16 @@ CREATE TABLE TicketLog(
 
         private void AddTicketLog(Ticket ticket)
         {
-            string query = "INSERT INTO TicketLog(TicketId,Title,Description,Status,ModifyUserName,ModifyTime) VALUES(@TicketId,@Title,@Description,@Status,@ModifyUserName,@ModifyTime)";
+            string query = "INSERT INTO TicketLog(TicketId,Title,Description,Status,Priority,Assignee,Attachments,ModifyUserName,ModifyTime) VALUES(@TicketId,@Title,@Description,@Status,@Priority,@Assignee,@Attachments,@ModifyUserName,@ModifyTime)";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@TicketId", ticket.Id),
                 new SqlParameter("@Title", ticket.Title),
                 new SqlParameter("@Description", ticket.Description),
                 new SqlParameter("@Status", ticket.Status),
+                new SqlParameter("@Priority", ticket.Priority),
+                new SqlParameter("@Assignee", ticket.Assignee),
+                new SqlParameter("@Attachments", ticket.Attachments),
                 new SqlParameter("@ModifyUserName", ticket.ModifyUserName),
                 new SqlParameter("@ModifyTime", ticket.ModifyTime)
             };
@@ -172,6 +187,9 @@ CREATE TABLE TicketLog(
             ticket.Title = row["Title"].ToString();
             ticket.Description = row["Description"].ToString();
             ticket.Status = row["Status"].ToString();
+            ticket.Priority = row.Table.Columns.Contains("Priority") ? row["Priority"].ToString() : "";
+            ticket.Assignee = row.Table.Columns.Contains("Assignee") ? row["Assignee"].ToString() : "";
+            ticket.Attachments = row.Table.Columns.Contains("Attachments") ? row["Attachments"].ToString() : "";
             ticket.CreateUserName = row["CreateUserName"].ToString();
             ticket.CreateTime = Convert.ToDateTime(row["CreateTime"]);
             ticket.ModifyUserName = row["ModifyUserName"].ToString();
