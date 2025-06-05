@@ -98,7 +98,10 @@ namespace Database
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = storageProcName;
-                cmd.Parameters.AddRange(paras);
+                if (paras != null && paras.Length > 0)
+                {
+                    cmd.Parameters.AddRange(paras);
+                }
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(dt);
@@ -109,3 +112,4 @@ namespace Database
         }
     }
 }
+

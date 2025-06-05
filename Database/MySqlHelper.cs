@@ -59,7 +59,10 @@ namespace Database
                 OpenConnection();
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddRange(parameters);
+                    if (parameters != null && parameters.Length > 0)
+                    {
+                        command.Parameters.AddRange(parameters);
+                    }
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                     {
                         adapter.Fill(dataTable);
@@ -86,7 +89,10 @@ namespace Database
                 OpenConnection();
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddRange(paras);
+                    if (paras != null && paras.Length > 0)
+                    {
+                        command.Parameters.AddRange(paras);
+                    }
                     rowsAffected = command.ExecuteNonQuery();
                 }
             }
@@ -109,7 +115,10 @@ namespace Database
                 OpenConnection();
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddRange(paras);
+                    if (paras != null && paras.Length > 0)
+                    {
+                        command.Parameters.AddRange(paras);
+                    }
                     result = command.ExecuteScalar();
                 }
             }
