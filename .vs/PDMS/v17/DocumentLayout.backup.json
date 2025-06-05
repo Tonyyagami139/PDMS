@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\tianx\\Desktop\\MyGitHub\\PDMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|c:\\users\\tianx\\desktop\\mygithub\\pdms\\pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|c:\\users\\tianx\\desktop\\mygithub\\pdms\\pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFA33571-9AB1-4934-B253-DAA2338F9286}|PDMS\\PDMS.csproj|solutionrelative:pdms\\formfailurerecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormFailureRecord.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\MyGitHub\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
-              "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.Designer.cs",
-              "ToolTip": "C:\\Users\\tianx\\Desktop\\MyGitHub\\PDMS\\PDMS\\FormFailureRecord.Designer.cs",
-              "RelativeToolTip": "PDMS\\FormFailureRecord.Designer.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAApwJ8AAAAMAAAAAAAAAA==",
+              "Title": "FormFailureRecord.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "C:\\Users\\tianx\\Desktop\\MyGitHub\\PDMS\\PDMS\\FormFailureRecord.cs",
+              "RelativeDocumentMoniker": "PDMS\\FormFailureRecord.cs",
+              "ToolTip": "C:\\Users\\tianx\\Desktop\\MyGitHub\\PDMS\\PDMS\\FormFailureRecord.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "PDMS\\FormFailureRecord.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T03:30:54.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T03:34:31.214Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             }
           ]
         }
