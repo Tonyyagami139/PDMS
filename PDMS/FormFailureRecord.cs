@@ -276,7 +276,7 @@ namespace PDMS
             }
             else
             {
-                // 用户选择了“否”，取消删除操作
+                // 用户选择了"否"，取消删除操作
                 facade.FailureRecordShowLog(tb_FRlog, "删除操作已取消。");
             }
         }
@@ -780,6 +780,16 @@ namespace PDMS
             //FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
             //var fr = dal.GetFailureRecord(id);
             //FailureRecordInfo2Form(fr);
+        }
+
+        private void 统计ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("统计功能待实现");
+        }
+
+        private void 查询ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("查询功能待实现");
         }
     }
 }

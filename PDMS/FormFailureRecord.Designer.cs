@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -89,8 +90,16 @@
             this.tb_FRserialNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关闭ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查询ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.统计ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_FailureRecord)).BeginInit();
@@ -644,29 +653,104 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.设置ToolStripMenuItem});
+            this.文件ToolStripMenuItem,
+            this.编辑ToolStripMenuItem,
+            this.查询ToolStripMenuItem,
+            this.统计ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1171, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1171, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 设置ToolStripMenuItem
+            // 文件ToolStripMenuItem
             // 
-            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.关闭ToolStripMenuItem});
-            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.设置ToolStripMenuItem.Text = "设置";
+            this.文件ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.文件ToolStripMenuItem.Text = "文件";
             // 
             // 关闭ToolStripMenuItem
             // 
+            this.关闭ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.关闭ToolStripMenuItem.Name = "关闭ToolStripMenuItem";
-            this.关闭ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.关闭ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.关闭ToolStripMenuItem.Text = "关闭";
             this.关闭ToolStripMenuItem.Click += new System.EventHandler(this.关闭ToolStripMenuItem_Click);
+            // 
+            // 编辑ToolStripMenuItem
+            // 
+            this.编辑ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新增ToolStripMenuItem,
+            this.修改ToolStripMenuItem,
+            this.删除ToolStripMenuItem});
+            this.编辑ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.编辑ToolStripMenuItem.Text = "编辑";
+            // 
+            // 新增ToolStripMenuItem
+            // 
+            this.新增ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
+            this.新增ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.新增ToolStripMenuItem.Text = "新增";
+            this.新增ToolStripMenuItem.Click += new System.EventHandler(this.新增ToolStripMenuItem_Click);
+            // 
+            // 修改ToolStripMenuItem
+            // 
+            this.修改ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.修改ToolStripMenuItem.Text = "修改";
+            this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
+            // 
+            // 删除ToolStripMenuItem
+            // 
+            this.删除ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.删除ToolStripMenuItem.Text = "删除";
+            this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
+            // 查询ToolStripMenuItem
+            // 
+            this.查询ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查询ToolStripMenuItem1});
+            this.查询ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.查询ToolStripMenuItem.Name = "查询ToolStripMenuItem";
+            this.查询ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.查询ToolStripMenuItem.Text = "查询";
+            // 
+            // 查询ToolStripMenuItem1
+            // 
+            this.查询ToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.查询ToolStripMenuItem1.Name = "查询ToolStripMenuItem1";
+            this.查询ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.查询ToolStripMenuItem1.Text = "查询";
+            this.查询ToolStripMenuItem1.Click += new System.EventHandler(this.查询ToolStripMenuItem1_Click);
+            // 
+            // 统计ToolStripMenuItem
+            // 
+            this.统计ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.统计ToolStripMenuItem1});
+            this.统计ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.统计ToolStripMenuItem.Name = "统计ToolStripMenuItem";
+            this.统计ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.统计ToolStripMenuItem.Text = "统计";
+            // 
+            // 统计ToolStripMenuItem1
+            // 
+            this.统计ToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.统计ToolStripMenuItem1.Name = "统计ToolStripMenuItem1";
+            this.统计ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.统计ToolStripMenuItem1.Text = "统计";
+            this.统计ToolStripMenuItem1.Click += new System.EventHandler(this.统计ToolStripMenuItem1_Click);
             // 
             // statusStrip1
             // 
@@ -681,7 +765,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(1171, 844);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -689,7 +773,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormFailureRecord";
-            this.Text = "FormFailureRecord";
+            this.Text = "故障记录";
             this.Load += new System.EventHandler(this.FormFailureRecord_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -703,7 +787,6 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -739,25 +822,20 @@
         private System.Windows.Forms.TextBox tb_FRlog;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关闭ToolStripMenuItem;
-        private System.Windows.Forms.TextBox tb_producType;
-        private System.Windows.Forms.RadioButton radioButton_FRrework;
+        private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新增ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 修改ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查询ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查询ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 统计ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 统计ToolStripMenuItem1;
+        private System.Windows.Forms.TextBox tb_productFamily;
         private System.Windows.Forms.TextBox tb_productName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tb_productFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WorkStepProcessName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FailureMode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreateUserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModifyUserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModifyTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.TextBox tb_producType;
+        private System.Windows.Forms.RadioButton radioButton_FRrework;
     }
 }

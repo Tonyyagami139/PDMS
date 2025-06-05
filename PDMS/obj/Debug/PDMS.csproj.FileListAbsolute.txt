@@ -74,3 +74,11 @@ C:\Users\tianx\Desktop\Settings\Solutions\PDMS\PDMS\bin\Debug\Microsoft.Bcl.Hash
 C:\Users\tianx\Desktop\Settings\Solutions\PDMS\PDMS\bin\Debug\RBush.xml
 C:\Users\tianx\Desktop\Settings\Solutions\PDMS\PDMS\bin\Debug\SixLabors.Fonts.xml
 C:\Users\tianx\Desktop\Settings\Solutions\PDMS\PDMS\bin\Debug\Common.dll.config
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.csproj.AssemblyReference.cache
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.FormFailureRecord.resources
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.FormLogIn.resources
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.Properties.Resources.resources
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.csproj.GenerateResource.cache
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.csproj.CoreCompileInputs.cache
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.exe
+C:\Users\tianx\Desktop\MyGitHub\PDMS\PDMS\obj\Debug\PDMS.pdb
