@@ -2,6 +2,7 @@
 using Database;
 using Database.Model;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -236,4 +237,3 @@ namespace Bll
         }
     }
 }
-
