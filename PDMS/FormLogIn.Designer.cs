@@ -38,7 +38,6 @@
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关闭ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.失效记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.工单记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -101,8 +100,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.设置ToolStripMenuItem,
-            this.失效记录ToolStripMenuItem,
-            this.工单记录ToolStripMenuItem});
+            this.失效记录ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(722, 28);
@@ -130,16 +128,9 @@
             this.失效记录ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.失效记录ToolStripMenuItem.Text = "失效记录";
             this.失效记录ToolStripMenuItem.Click += new System.EventHandler(this.失效记录ToolStripMenuItem_Click);
-            //
-            // 工单记录ToolStripMenuItem
-            //
-            this.工单记录ToolStripMenuItem.Name = "工单记录ToolStripMenuItem";
-            this.工单记录ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-            this.工单记录ToolStripMenuItem.Text = "工单记录";
-            this.工单记录ToolStripMenuItem.Click += new System.EventHandler(this.工单记录ToolStripMenuItem_Click);
-            //
+            // 
             // groupBox1
-            //
+            // 
             this.groupBox1.Controls.Add(this.tb_userName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_passWord);
@@ -149,8 +140,6 @@
             this.groupBox1.Size = new System.Drawing.Size(396, 145);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Text = "登录信息";
             // 
             // FormLogIn
             // 
@@ -165,8 +154,6 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.AcceptButton = this.bt_login;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormLogIn";
             this.Text = "PDMS";
@@ -191,7 +178,6 @@
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关闭ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 失效记录ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 工单记录ToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }

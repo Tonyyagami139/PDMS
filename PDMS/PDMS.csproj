@@ -131,12 +131,6 @@
     <Compile Include="FormFailureRecord.Designer.cs">
       <DependentUpon>FormFailureRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTicketRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTicketRecord.Designer.cs">
-      <DependentUpon>FormTicketRecord.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormLogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,9 +142,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormFailureRecord.resx">
       <DependentUpon>FormFailureRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTicketRecord.resx">
-      <DependentUpon>FormTicketRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogIn.resx">
       <DependentUpon>FormLogIn.cs</DependentUpon>
