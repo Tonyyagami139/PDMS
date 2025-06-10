@@ -222,6 +222,14 @@ namespace PDMS.Facade
                     {
                         statusCell.Style.Font.FontColor = XLColor.Red;
                     }
+                    else if (string.Equals(r.Status, "QUARANTINE", StringComparison.OrdinalIgnoreCase))
+                    {
+                        statusCell.Style.Font.FontColor = XLColor.Purple;
+                    }
+                    else if (string.Equals(r.Status, "REWORK", StringComparison.OrdinalIgnoreCase))
+                    {
+                        statusCell.Style.Font.FontColor = XLColor.Blue;
+                    }
                     else
                     {
                         statusCell.Style.Font.FontColor = XLColor.Orange; // 黄色字体

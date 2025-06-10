@@ -157,15 +157,23 @@ namespace PDMS
             FailureRecordList = new List<FailureRecord>();
             dataGridView_failureRecord.AutoGenerateColumns = false;
             radioButton_FRpass.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRpass.ForeColor = Color.Green;
             radioButton_FRfail.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRfail.ForeColor= Color.Red;
             radioButton_FRhold.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRhold.ForeColor = Color.Orange;
             radioButton_FRrework.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRrework.ForeColor = Color.Blue;
             radioButton_FRquarantine.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_FRquarantine.ForeColor = Color.Purple;
             CurrentStatus = string.Empty;
             //status access level should be [1,3]
             if (Global.UserLevel < 0 || Global.UserLevel > 3)
             {
-                GroupBox_FinalResult.Enabled = false;
+                radioButton_FRpass.Enabled = false;
+                radioButton_FRfail.Enabled = false;
+                radioButton_FRquarantine.Enabled = false;
+                radioButton_FRrework.Enabled = false;
                 bt_FRdelete.Enabled = false;
             }
 
@@ -314,7 +322,7 @@ namespace PDMS
                         break;
                     case "Rework":
                         e.CellStyle.BackColor = Color.White;
-                        e.CellStyle.ForeColor = Color.OrangeRed;
+                        e.CellStyle.ForeColor = Color.Blue;
                         break;
                     case "Quarantine":
                         e.CellStyle.BackColor = Color.White;

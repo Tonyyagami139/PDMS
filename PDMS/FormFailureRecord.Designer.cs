@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFailureRecord));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tb_FRlog = new System.Windows.Forms.TextBox();
@@ -110,19 +110,19 @@
             this.tableLayoutPanel1.Controls.Add(this.dataGridView_failureRecord, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox_failureRecord, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1171, 816);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1171, 814);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tb_FRlog
             // 
             this.tb_FRlog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_FRlog.Location = new System.Drawing.Point(3, 655);
+            this.tb_FRlog.Location = new System.Drawing.Point(3, 653);
             this.tb_FRlog.Multiline = true;
             this.tb_FRlog.Name = "tb_FRlog";
             this.tb_FRlog.Size = new System.Drawing.Size(404, 158);
@@ -131,10 +131,10 @@
             // pictureBox_FailureRecord
             // 
             this.pictureBox_FailureRecord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_FailureRecord.Location = new System.Drawing.Point(413, 329);
+            this.pictureBox_FailureRecord.Location = new System.Drawing.Point(413, 328);
             this.pictureBox_FailureRecord.Name = "pictureBox_FailureRecord";
             this.tableLayoutPanel1.SetRowSpan(this.pictureBox_FailureRecord, 2);
-            this.pictureBox_FailureRecord.Size = new System.Drawing.Size(755, 484);
+            this.pictureBox_FailureRecord.Size = new System.Drawing.Size(755, 483);
             this.pictureBox_FailureRecord.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_FailureRecord.TabIndex = 5;
             this.pictureBox_FailureRecord.TabStop = false;
@@ -168,7 +168,7 @@
             this.dataGridView_failureRecord.RowHeadersWidth = 51;
             this.dataGridView_failureRecord.RowTemplate.Height = 27;
             this.dataGridView_failureRecord.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_failureRecord.Size = new System.Drawing.Size(755, 320);
+            this.dataGridView_failureRecord.Size = new System.Drawing.Size(755, 319);
             this.dataGridView_failureRecord.TabIndex = 4;
             this.dataGridView_failureRecord.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_failureRecord_CellClick);
             this.dataGridView_failureRecord.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_failureRecord_CellFormatting);
@@ -178,8 +178,8 @@
             // SerialNumber
             // 
             this.SerialNumber.DataPropertyName = "SerialNumber";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle1;
             this.SerialNumber.Frozen = true;
             this.SerialNumber.HeaderText = "序列号";
             this.SerialNumber.MinimumWidth = 6;
@@ -190,8 +190,8 @@
             // ProductFamily
             // 
             this.ProductFamily.DataPropertyName = "ProductFamily";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductFamily.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductFamily.DefaultCellStyle = dataGridViewCellStyle2;
             this.ProductFamily.HeaderText = "产品系列";
             this.ProductFamily.MinimumWidth = 6;
             this.ProductFamily.Name = "ProductFamily";
@@ -201,8 +201,8 @@
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ProductName.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ProductName.DefaultCellStyle = dataGridViewCellStyle3;
             this.ProductName.HeaderText = "产品名称";
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
@@ -221,8 +221,8 @@
             // WorkStepProcessName
             // 
             this.WorkStepProcessName.DataPropertyName = "WorkStepProcessName";
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.WorkStepProcessName.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WorkStepProcessName.DefaultCellStyle = dataGridViewCellStyle4;
             this.WorkStepProcessName.HeaderText = "流程";
             this.WorkStepProcessName.MinimumWidth = 6;
             this.WorkStepProcessName.Name = "WorkStepProcessName";
@@ -232,8 +232,8 @@
             // FailureMode
             // 
             this.FailureMode.DataPropertyName = "FailureMode";
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FailureMode.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FailureMode.DefaultCellStyle = dataGridViewCellStyle5;
             this.FailureMode.HeaderText = "失效模式";
             this.FailureMode.MinimumWidth = 6;
             this.FailureMode.Name = "FailureMode";
@@ -243,8 +243,8 @@
             // Status
             // 
             this.Status.DataPropertyName = "Status";
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Status.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Status.DefaultCellStyle = dataGridViewCellStyle6;
             this.Status.HeaderText = "状态";
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
@@ -254,8 +254,8 @@
             // Comment
             // 
             this.Comment.DataPropertyName = "Comment";
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Comment.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Comment.DefaultCellStyle = dataGridViewCellStyle7;
             this.Comment.HeaderText = "备注";
             this.Comment.MinimumWidth = 6;
             this.Comment.Name = "Comment";
@@ -265,8 +265,8 @@
             // CreateUserName
             // 
             this.CreateUserName.DataPropertyName = "CreateUserName";
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CreateUserName.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CreateUserName.DefaultCellStyle = dataGridViewCellStyle8;
             this.CreateUserName.HeaderText = "创建人";
             this.CreateUserName.MinimumWidth = 6;
             this.CreateUserName.Name = "CreateUserName";
@@ -276,8 +276,8 @@
             // CreateTime
             // 
             this.CreateTime.DataPropertyName = "CreateTime";
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CreateTime.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CreateTime.DefaultCellStyle = dataGridViewCellStyle9;
             this.CreateTime.HeaderText = "创建时间";
             this.CreateTime.MinimumWidth = 6;
             this.CreateTime.Name = "CreateTime";
@@ -287,8 +287,8 @@
             // ModifyUserName
             // 
             this.ModifyUserName.DataPropertyName = "ModifyUserName";
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ModifyUserName.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ModifyUserName.DefaultCellStyle = dataGridViewCellStyle10;
             this.ModifyUserName.HeaderText = "修改人";
             this.ModifyUserName.MinimumWidth = 6;
             this.ModifyUserName.Name = "ModifyUserName";
@@ -298,8 +298,8 @@
             // ModifyTime
             // 
             this.ModifyTime.DataPropertyName = "ModifyTime";
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ModifyTime.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ModifyTime.DefaultCellStyle = dataGridViewCellStyle11;
             this.ModifyTime.HeaderText = "修改时间";
             this.ModifyTime.MinimumWidth = 6;
             this.ModifyTime.Name = "ModifyTime";
@@ -309,8 +309,8 @@
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Id.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle12;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -347,7 +347,7 @@
             this.groupBox_failureRecord.Location = new System.Drawing.Point(3, 3);
             this.groupBox_failureRecord.Name = "groupBox_failureRecord";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox_failureRecord, 2);
-            this.groupBox_failureRecord.Size = new System.Drawing.Size(404, 646);
+            this.groupBox_failureRecord.Size = new System.Drawing.Size(404, 644);
             this.groupBox_failureRecord.TabIndex = 3;
             this.groupBox_failureRecord.TabStop = false;
             // 
@@ -649,7 +649,7 @@
             this.设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1171, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1171, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -658,7 +658,7 @@
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.关闭ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 关闭ToolStripMenuItem
