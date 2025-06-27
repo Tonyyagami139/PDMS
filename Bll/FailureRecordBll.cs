@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,17 +42,48 @@ namespace Bll
 
         }
 
-        public string GetFullProcessJson(FailureRecord failureRecord)
+        public DataTable GetFullProcessJsonBySn(string serial)
         {
-            string query = "SELECT process FROM production.product p INNER JOIN production.batch b on p.batch_id=b.id INNER JOIN tree_item i on b.item_id=i.id WHERE p.sn=@sn";
+            string query = "get_process_by_sn";
             MySqlParameter[] paras = new MySqlParameter[]
             {
-                        new MySqlParameter("@sn", failureRecord.SerialNumber),
-                    };
-            return Db.ExecuteScalar(query, paras).ToString();
+                new MySqlParameter("@in_sn", serial),
+            };
+            DataTable dt = Db.RunStorageProcedure(query, paras);
+            return dt;
 
         }
+        /// <summary>
+        /// 调用存储过程，检查 SN 在MYSQL数据库中是否存在
+        /// </summary>
+        public DataTable IsSnValid(string sn)
+        {
+            string query = "is_sn_valid";
+            MySqlParameter[] paras = new MySqlParameter[]
+            {
+                new MySqlParameter("@in_sn", sn),
+            };
+            DataTable dt = Db.RunStorageProcedure(query, paras);
+            return dt;
+        }
+        /// <summary>
+        /// 调用存储过程 get_full_tree_by_sn
+        /// </summary>
+        public DataTable GetFullTreeTableBySn(string sn)
+        {
+            string procName = "get_full_tree_by_sn";
+            MySqlParameter[] paras = new MySqlParameter[]
+            {
+                new MySqlParameter("@in_sn", MySqlDbType.VarChar, 255)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = sn
+                }
+            };
 
+            // DataTable 中会有一列 full_tree完整路径
+            return Db.RunStorageProcedure(procName, paras);
+        }
         public DataTable GetProductFamilies()
         {
             string query = "SELECT name FROM production.tree_item where flag = 1";
@@ -118,18 +150,6 @@ namespace Bll
             Db.ExecuteQuery(query, parameters);
         }
 
-
-        
-        public void DeleteFailureRecord(string sn)
-        {
-            string query = "DELETE FROM FailureRecord WHERE SerialNumber = @SerialNumber";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@SerialNumber", sn)
-            };
-            Db.ExecuteQuery(query, parameters);
-        }
-
         public void DeleteFailureRecord(int Id,string DeleteUserName)
         {
             var parameters = new SqlParameter[]
@@ -148,6 +168,7 @@ namespace Bll
             };
             return Convert.ToInt32(Db.ExecuteScalar(query, parameters));         
         }
+
         public List<FailureRecord> GetFailureRecords(string sql)
         {
             List<FailureRecord> failureRecords = new List<FailureRecord>();

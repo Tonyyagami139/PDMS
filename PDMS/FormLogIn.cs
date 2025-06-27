@@ -36,9 +36,10 @@ namespace PDMS
             menuStrip1.RenderMode = ToolStripRenderMode.System;
             menuStrip1.BackColor = Color.RoyalBlue;
             menuStrip1.ForeColor = Color.White;   // 可选：改一下文字颜色以便更清晰
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
             this.MaximizeBox = false;
             DeserializeUser();
+            bt_login.Focus();
         }
 
         private void bt_login_Click(object sender, EventArgs e)
@@ -55,9 +56,9 @@ namespace PDMS
                     Global.UserLevel = userDal.GetAccessLevel(username);
                     HandleCommonAccess();
                     this.Text += "  User: " + username;
-                    groupBox1.Visible = false;
-                    bt_login.Visible = false;
-                    this.BackgroundImage = Resources.logo;
+                    panel1.Visible = false;
+                    Image image = Image.FromFile(Global.LogoPicture);
+                    pictureBox1.Image = image;
                     //特殊权限处理
                     if (userDal.HaveAccess(Global.UserLevel))
                     {
@@ -132,6 +133,20 @@ namespace PDMS
         {
             FormFailureRecord formFailureRecord = new FormFailureRecord();
             formFailureRecord.Show();
+        }
+
+        private void 数据模板ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormExcelTemplate f = new FormExcelTemplate();
+                f.Show();
+            }
+            catch
+            {
+                FormExcelTemplate f = new FormExcelTemplate();
+                f.Show();
+            }
         }
     }
 }

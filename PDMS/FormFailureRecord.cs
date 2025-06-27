@@ -1,11 +1,13 @@
 ﻿using Common;
 using Dal;
+using DocumentFormat.OpenXml.Presentation;
 using PDMS.Facade;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -22,7 +24,8 @@ namespace PDMS
 {
     public partial class FormFailureRecord : Form
     {
-        FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
+        private FailureRecordDal dal { get; set; } = new FailureRecordDal(Global.DbSettingSqlserver);
+        private FailureRecordDal daltym { get; set; } = new FailureRecordDal(Global.DbSettingTym);
         public List<FailureRecord> FailureRecordList { get; set; }
         //Current Infos
         public string CurrentStatus { get; set; }
@@ -36,10 +39,8 @@ namespace PDMS
         public List<string> FilteredFailureModes { get; set; }
         public List<string> ProcessesList { get; set; }
 
-        public List<string> FilteredProcesses { get; set; }
+        public Dictionary<string,string> ProcessesMap { get; set; }
         public List<FailureRecord_ProductInfo> ProductInfoList { get; set; }
-
-        //public List<string> ProductNameList { get; set; } // too many, remove it for now 
 
 
         public FormFacade facade { get; set; }
@@ -47,13 +48,120 @@ namespace PDMS
         {
             InitializeComponent();
         }
-
         private void FormFailureRecord_Load(object sender, EventArgs e)
         {
             FormInitial();
             ResponseDataGridViewHeaderSearch();
         }
 
+        private void DebounceTimer_Tick(object sender, EventArgs e)
+        {
+            // 只有停顿超过 timerDelay 才来到这里，认定“输入完成”
+            OnSnTextInputCompleted(tb_FRserialNumber.Text);
+
+        }
+       
+        /// <summary>
+        /// serial number 输入完成后的逻辑
+        /// </summary>
+        /// <param name="text"></param>
+        private void OnSnTextInputCompleted(object text)
+        {
+            Application.DoEvents();
+            //..todo: 处理输入完成后的逻辑
+            string input = text.ToString().Trim();
+
+            if (string.IsNullOrEmpty(input))
+            {
+                // 清空相关字段
+                tb_productFamily.Text = "";
+                tb_producType.Text = "";
+                tb_productName.Text = "";
+                return;
+            }
+            UpdateProcesses(input);
+
+            UpdateProductInfo(input);
+
+            bt_FRuploadPicture.Focus();
+
+        }
+
+        private FailureRecord_ProductInfo UpdateProductInfo(string sn,bool updateUI=true)
+        {
+            #region update productInfo
+            var treePath = daltym.GetFullTreePathBySn(sn);
+            ProductInfoList = facade.ReadProductInfo(treePath);
+            // 筛选ProductInfoList，找出ProductType以输入内容开头的项
+            var matched = ProductInfoList
+                .Where(p => !string.IsNullOrEmpty(p.ProductType) && sn.StartsWith(p.ProductType, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            if (updateUI)
+            {
+                if (matched.Count == 1)
+                {
+                    // 只匹配到一个，自动填充
+                    tb_productFamily.Text = matched[0].ProductFamily ?? "";
+                    tb_producType.Text = matched[0].ProductType ?? "";
+                    tb_productName.Text = matched[0].ProductName ?? "";
+                }
+                else if (matched.Count < 1)
+                {
+                    // 没有匹配，清空填充
+                    tb_productFamily.Text = "";
+                    tb_producType.Text = "";
+                    tb_productName.Text = "";
+                }
+                else
+                {
+                    // 匹配到多个，自动填充最后一个
+                    tb_productFamily.Text = matched.Last().ProductFamily ?? "";
+                    tb_producType.Text = matched.Last().ProductType ?? "";
+                    tb_productName.Text = matched.Last().ProductName ?? "";
+                }
+            }
+            return matched.LastOrDefault();
+            #endregion
+        }
+        private void UpdateProcesses(string sn)
+        {
+            #region update processes
+            // 1. 取出原始数据（方便后面算最大长度）
+            var rawList = daltym.GetProcessesBySn(sn).ToList();
+            if (rawList.Count < 1)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{sn}没有查到任何流程");
+                return;
+            }
+            // 2. 计算 Key 的最大长度
+            int maxKeyLen = rawList.Max(p => p.Key.Length);
+
+            // 3. 生成等长的展示字符串
+            var displayList = rawList
+                .Select(p =>
+                    p.Key.PadRight(maxKeyLen)
+                    + " | "
+                    + p.Name
+                )
+                .ToList();
+            // 4. 将 Key 和 Name 映射到字典中
+            ProcessesMap = rawList.ToDictionary(p => p.Key, p => p.Name);
+
+            if (displayList != null)
+            {
+                ProcessesList = displayList;
+                cb_FRworkStep.DataSource = null; ;
+                string oldText = cb_FRworkStep.Text;
+                int oldSelStart = cb_FRworkStep.SelectionStart;
+                cb_FRworkStep.DataSource = null;//ProcessesList;
+                cb_FRworkStep.Items.Clear();
+                cb_FRworkStep.Items.AddRange(ProcessesList.ToArray());
+                cb_FRworkStep.SelectedIndex = -1;
+                cb_FRworkStep.Text = oldText;
+                cb_FRworkStep.SelectionStart = oldSelStart;
+            }
+            #endregion
+        }
         private void ResponseDataGridViewHeaderSearch()
         {
             System.Windows.Forms.TextBox filterBox = new System.Windows.Forms.TextBox();
@@ -144,10 +252,10 @@ namespace PDMS
             facade = new FormFacade(this);
             try
             {
-                facade.CopyConfigs2Local();
-                ProductInfoList = facade.ReadProductInfo();
-                FailureModeList = facade.GetFailureModes();
-                ProcessesList = facade.GetProcesses();
+                var f= facade.CopyConfigs2Local();
+                //ProductInfoList = facade.ReadProductInfo();
+                FailureModeList = facade.GetFailureModes(f);
+                //ProcessesList = facade.GetProcesses();
             }
             catch
             {
@@ -202,9 +310,9 @@ namespace PDMS
             cb_FRfailureMode.DataSource = null;
             cb_FRworkStep.DataSource = null;
             cb_FRfailureMode.Items.Clear();
-            cb_FRworkStep.Items.Clear();
+            //cb_FRworkStep.Items.Clear();
             cb_FRfailureMode.DataSource = FailureModeList;
-            cb_FRworkStep.DataSource = ProcessesList;
+            cb_FRworkStep.DataSource = null;// ProcessesList;
             cb_FRfailureMode.Text = "";
             cb_FRworkStep.Text = "";
 
@@ -300,6 +408,8 @@ namespace PDMS
             FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
             var fr = dal.GetFailureRecord(id);
             FailureRecordInfo2Form(fr);
+            string sn = tb_FRserialNumber.Text;
+            OnSnTextInputCompleted(sn);
         }
         private void dataGridView_failureRecord_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -345,16 +455,21 @@ namespace PDMS
         {
             var failureRecord = FormInfo2FailureRecord();
             failureRecord.Status = "Hold"; // 默认状态为Hold
-
+            string sn = failureRecord.SerialNumber;
             if (string.IsNullOrEmpty(failureRecord.SerialNumber))
             {
-                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不能为空");
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{sn}不能为空");
                 return;
             }
-
+            
             if (dal.IsSerialNumberExist(failureRecord.SerialNumber))
             {
-                facade.FailureRecordShowLog(tb_FRlog, "错误:序列已存在，无法新增。");
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{sn}已存在，无法新增。");
+                return;
+            }
+            if (!daltym.IsSnValid(failureRecord.SerialNumber))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:太行数据库中没有该序列号:{failureRecord.SerialNumber}");
                 return;
             }
             if (string.IsNullOrEmpty(failureRecord.ProductName))
@@ -389,7 +504,10 @@ namespace PDMS
                 facade.FailureRecordShowLog(tb_FRlog, "错误:失效模式未定义");
                 return;
             }
-
+            if (!IsValidFailureRecord(failureRecord))
+            {
+                return;
+            }
             if (dal.AddFailureRecord(failureRecord))
             {
                 facade.FailureRecordShowLog(tb_FRlog, "增加成功。");
@@ -406,20 +524,18 @@ namespace PDMS
         {        
             SelectedFailureRecord = fr;
 
-            cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
             cb_FRfailureMode.TextChanged -= cb_FRfailureMode_TextChanged;
-            cb_FRworkStep.Text = SelectedFailureRecord.WorkStepProcessName;
-            cb_FRfailureMode.Text = SelectedFailureRecord.FailureMode;
-            cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
-            cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
-
-
             tb_FRserialNumber.Text = SelectedFailureRecord.SerialNumber;
+
+            cb_FRfailureMode.Text = SelectedFailureRecord.FailureMode;
+            cb_FRfailureMode.TextChanged += cb_FRfailureMode_TextChanged;
+            cb_FRworkStep.Text = SelectedFailureRecord.WorkStepProcessName;
+
+
             tb_producType.Text = SelectedFailureRecord.ProductType;
             tb_productFamily.Text = SelectedFailureRecord.ProductFamily;
             tb_productName.Text = SelectedFailureRecord.ProductName;
             tb_FRcomment.Text = SelectedFailureRecord.Comment;
-            tb_FRlog.Text = "";
             try
             {
                 pictureBox_FailureRecord.Image = Image.FromFile(SelectedFailureRecord.PictureFileName);
@@ -455,7 +571,6 @@ namespace PDMS
                     break;
             }
         }
-
         private FailureRecord FormInfo2FailureRecord()
         {
             FailureRecord fr = new FailureRecord();
@@ -481,90 +596,47 @@ namespace PDMS
             fr.DeleteTime = DateTime.Now;
             return fr;
         }
-
         private void tb_FRserialNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
-
         private void tb_productName_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
-
+        private bool IsValidFailureRecord(FailureRecord failureRecord)
+        {
+            var productInfo = UpdateProductInfo(failureRecord.SerialNumber, false);
+            UpdateProcesses(failureRecord.SerialNumber);
+            if (failureRecord.ProductType != productInfo.ProductType)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品类型错误。");
+                return false;
+            }
+            if (failureRecord.ProductFamily != productInfo.ProductFamily)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品系列错误。");
+                return false;
+            }
+            if (failureRecord.ProductName != productInfo.ProductName)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品名称错误。");
+                return false;
+            }
+            if (!this.ProcessesList.Contains(failureRecord.WorkStepProcessName))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:流程步骤录入错误。");
+                return false;
+            }
+            return true;
+        }
 
         private void cb_FRworkStep_TextChanged(object sender, EventArgs e)
         {
-
-
-            try
-            {
-                if (isFiltering) return; // 防止程序赋值导致的递归
-
-                string input = cb_FRworkStep.Text;
-                if (string.IsNullOrEmpty(input)) return;
-
-                int selStart = cb_FRworkStep.SelectionStart;
-
-                // 1. 筛选
-                var filtered = ProcessesList
-                    .Where(x => x.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
-                    .ToList();
-
-                // 只有一个匹配且和输入一致，不再筛选，避免下拉覆盖
-                if (filtered.Count == 1 && filtered[0].Equals(input, StringComparison.OrdinalIgnoreCase))
-                {
-                    return;
-                }
-
-                // 2. 刷新数据源
-                isFiltering = true;
-                Thread.Sleep(50);
-                cb_FRworkStep.TextChanged -= cb_FRworkStep_TextChanged;
-
-                cb_FRworkStep.DataSource = null;
-                cb_FRworkStep.Items.Clear();
-                cb_FRworkStep.DataSource = filtered;
-
-                cb_FRworkStep.Text = input;
-                cb_FRworkStep.SelectionStart = selStart;
-
-                cb_FRworkStep.DroppedDown = true;
-
-                cb_FRworkStep.TextChanged += cb_FRworkStep_TextChanged;
-                isFiltering = false;
-            }
-            catch { isFiltering = false; }
-
         }
 
-        private void bt_FRdownload_Click(object sender, EventArgs e)
-        {
-            if (FailureRecordList.Count < 1)
-            {
-                facade.FailureRecordShowLog(tb_FRlog, "没有可下载的数据。");
-                return;
-            }
-
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Data Files|*.xlsx";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string FilePath = sfd.FileName;
-                    var report = facade.GetExcelReportMemory(FailureRecordList);
-                    File.WriteAllBytes(FilePath, report);
-                    facade.FailureRecordShowLog(tb_FRlog, "下载完成。");
-                }
-                catch (Exception ex)
-                {
-                    facade.FailureRecordShowLog(tb_FRlog, "文件下载失败:" + ex.Message);
-                }
-            }
-        }
+        
 
         private void bt_FRsearch_Click(object sender, EventArgs e)
         {
@@ -605,14 +677,45 @@ namespace PDMS
 
             if (string.IsNullOrEmpty(sn))
             {
-                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不能为空");
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{sn}不能为空");
                 return;
             }
             if (!dal.IsSerialNumberExist(sn))
             {
-                facade.FailureRecordShowLog(tb_FRlog, "错误:序列号不存在，需要新增。");
+                facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{sn}不存在，需要新增。");
                 return;
             }
+            if (string.IsNullOrEmpty(tb_productName.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品名称不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(tb_producType.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品类型不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(tb_productFamily.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:产品系列不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(cb_FRworkStep.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:工序不能为空");
+                return;
+            }
+            if (string.IsNullOrEmpty(cb_FRfailureMode.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:失效模式不能为空");
+                return;
+            }
+            if (!facade.IsFailureModeValidate(cb_FRfailureMode.Text.Trim()))
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "错误:失效模式未定义");
+                return;
+            }
+
             FailureRecord tempFailureRecord = dal.GetFailureRecordBySn(sn);
             SelectedFailureRecord = new FailureRecord();
             SelectedFailureRecord.Id = tempFailureRecord.Id;
@@ -629,6 +732,21 @@ namespace PDMS
             SelectedFailureRecord.ModifyTime = DateTime.Now;
             SelectedFailureRecord.Status = radioButton_FRpass.Checked ? "Pass" : radioButton_FRfail.Checked ? "Fail" : radioButton_FRhold.Checked ? "Hold" : radioButton_FRrework.Checked ? "Rework" : radioButton_FRquarantine.Checked ? "Quarantine" : "";
             SelectedFailureRecord.PictureFileName = CurrentPictureFileName ?? Global.DefaultPicturePath;
+
+            if (tempFailureRecord.WorkStepProcessName == SelectedFailureRecord.WorkStepProcessName)//相同流程的已判定产品，不能修改回 "Hold" 状态
+            {
+                if (SelectedFailureRecord.Status == "Hold"&&tempFailureRecord.Status!="Hold")
+                {
+                    facade.FailureRecordShowLog(tb_FRlog, $"错误:序列号{SelectedFailureRecord.SerialNumber}的流程步骤 {SelectedFailureRecord.WorkStepProcessName} 已判定为非Hold状态，不能修改回Hold，请联系产品工程师。");
+                    return;
+                }
+            }
+
+            if (!IsValidFailureRecord(SelectedFailureRecord))
+            {
+                return;
+            }
+
             if (dal.UpdateFailureRecord(SelectedFailureRecord))
             {
                 facade.FailureRecordShowLog(tb_FRlog, "更新成功。");
@@ -689,43 +807,10 @@ namespace PDMS
 
         private void tb_FRserialNumber_TextChanged(object sender, EventArgs e)
         {
-            string input = tb_FRserialNumber.Text.Trim();
-
-            if (string.IsNullOrEmpty(input))
-            {
-                // 清空相关字段
-                tb_productFamily.Text = "";
-                tb_producType.Text = "";
-                tb_productName.Text = "";
-                return;
-            }
-
-            // 筛选ProductInfoList，找出ProductType以输入内容开头的项
-            var matched = ProductInfoList
-                .Where(p => !string.IsNullOrEmpty(p.ProductType) && input.StartsWith(p.ProductType, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            if (matched.Count == 1)
-            {
-                // 只匹配到一个，自动填充
-                tb_productFamily.Text = matched[0].ProductFamily ?? "";
-                tb_producType.Text = matched[0].ProductType ?? "";
-                tb_productName.Text = matched[0].ProductName ?? "";
-            }
-            else if (matched.Count < 1)
-            {
-                // 没有匹配，清空填充
-                tb_productFamily.Text = "";
-                tb_producType.Text = "";
-                tb_productName.Text = "";
-            }
-            else
-            {
-                // 匹配到多个，自动填充最后一个
-                tb_productFamily.Text = matched.Last().ProductFamily ?? "";
-                tb_producType.Text = matched.Last().ProductType ?? "";
-                tb_productName.Text = matched.Last().ProductName ?? "";
-            }
+            //// 每次输入都重置定时器
+            //_debounceTimer.Stop();
+            //_debounceTimer.Start();
+            
         }
 
         private bool isFiltering = false;
@@ -788,6 +873,47 @@ namespace PDMS
             //FailureRecordDal dal = new FailureRecordDal(Global.DbSettingSqlserver);
             //var fr = dal.GetFailureRecord(id);
             //FailureRecordInfo2Form(fr);
+        }
+
+        private void 下载ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FailureRecordList.Count < 1)
+            {
+                facade.FailureRecordShowLog(tb_FRlog, "没有可下载的数据。");
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Data Files|*.xlsx";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string FilePath = sfd.FileName;
+                    var report = facade.GetSyncFusionExcelReportMemory(FailureRecordList);
+                    File.WriteAllBytes(FilePath, report);
+                    facade.FailureRecordShowLog(tb_FRlog, "下载完成。");
+                }
+                catch (Exception ex)
+                {
+                    facade.FailureRecordShowLog(tb_FRlog, "文件下载失败:" + ex.Message);
+                }
+            }
+        }
+
+        private void tb_FRserialNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;  // 屏蔽“嘀”声
+                OnSnTextInputCompleted(tb_FRserialNumber.Text);
+            }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

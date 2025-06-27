@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -124,7 +125,35 @@ namespace Database
             return result;
         }
 
-
+        public DataTable RunStorageProcedure(string storageProcName, MySqlParameter[] paras)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                OpenConnection();
+                using (MySqlCommand command = new MySqlCommand(storageProcName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    if (paras != null && paras.Length > 0)
+                    {
+                        command.Parameters.AddRange(paras);
+                    }
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error executing stored procedure: {ex.Message}");
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return dataTable;
+        }
 
     }
 }

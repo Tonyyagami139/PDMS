@@ -1,7 +1,7 @@
-﻿using ClosedXML.Excel;
-using Common;
+﻿using Common;
 using Dal;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,12 +20,16 @@ namespace PDMS.Facade
         public string configurationFileName { get; set; }
         public void FailureRecordShowLog(TextBox tb_log, string CnStr)
         {
-            tb_log.AppendText(CnStr);
-            tb_log.AppendText("\r");
-            tb_log.AppendText("\n");
+            string str = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " + CnStr;
+            // 先把插入点移动到开头
+            tb_log.SelectionStart = 0;
+            tb_log.SelectionLength = 0;
+
+            // 插入新日志并换行
+            tb_log.SelectedText = str + Environment.NewLine;
         }
 
-        public void CopyConfigs2Local()
+        public string CopyConfigs2Local()
         {
             string filename = "\\\\192.168.31.223\\TestingDataRoot\\PDMS\\FailureRecord\\FailureRecord_Configs.xlsx";
             string guid = Guid.NewGuid().ToString();
@@ -57,87 +61,62 @@ namespace PDMS.Facade
                 File.Delete(configurationFileName);
             }
             File.Copy(filename, configurationFileName, true);
+            return configurationFileName;
         }
 
-        public List<FailureRecord_ProductInfo> ReadProductInfo()
+        public List<FailureRecord_ProductInfo> ReadProductInfo(string path)
         {
-            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
-            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "ProductInfo");
-            List<FailureRecord_ProductInfo> list = new List<FailureRecord_ProductInfo>();
-            if (worksheet == null)
-            {
-                MessageBox.Show("配置文件中未找到ProductInfo工作表，请检查配置文件。");
-                throw new FastExcelException("配置文件中未找到ProductInfo工作表，请检查配置文件。");
-            }
+            if (path == null) throw new ArgumentNullException(nameof(path));
 
-            var row = 2;//skip header
-            while (true)
-            {
+            var segments = path.Split(new[] { '/' }, StringSplitOptions.None);
 
-                var cellValue = worksheet.GetCellValue(row, 1);
-                if (string.IsNullOrEmpty(cellValue))
-                {
-                    break; // 如果第一列的值为空，结束读取
-                }
-                var productInfo = new FailureRecord_ProductInfo
-                {
-                    ProductFamily = worksheet.GetCellValue(row, 1) ?? string.Empty,
-                    ProductName = worksheet.GetCellValue(row, 2) ?? string.Empty,
-                    ProductType = worksheet.GetCellValue(row, 3) ?? string.Empty
-                };
-                list.Add(productInfo);
-                row++;
-            }
-            return list;
+            string first = segments.Length > 0 ? segments[0] : string.Empty;
+            string last = segments.Length > 0 ? segments[segments.Length - 1] : string.Empty;
+            string middle = segments.Length > 2
+                ? string.Join("/", segments.Skip(1).Take(segments.Length - 2))
+                : string.Empty;
 
+            return new List<FailureRecord_ProductInfo>
+           {
+               new FailureRecord_ProductInfo
+               {
+                   ProductFamily = first,
+                   ProductName = middle,
+                   ProductType = last
+               }
+           };
         }
 
-        public List<string> GetFailureModes()
-        {
-            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
-            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "FailureModes");
-            List<string> list = new List<string>();
-            var row = 2;//skip header
-            while (true)
-            {
-
-                var cellValue = worksheet.GetCellValue(row, 1);
-                if (string.IsNullOrEmpty(cellValue))
-                {
-                    break; // 如果第一列的值为空，结束读取
-                }
-
-                list.Add(cellValue);
-                row++;
-            }
-            return list;
-        }
-        public List<string> GetProcesses()
+        public List<string> GetFailureModes(string filePath)
         {
 
-            FastExcelWorkbook workbook = new FastExcelWorkbook(configurationFileName);
-            FastExcelWorksheet worksheet = new FastExcelWorksheet(workbook, "Worksteps");
-            List<string> list = new List<string>();
-            var row = 2;//skip header
-            while (true)
+            List<string> firstColumn = new List<string>();
+            using (ExcelEngine excelEngine = new ExcelEngine())
             {
+                IApplication application = excelEngine.Excel;
+                application.DefaultVersion = ExcelVersion.Xlsx;
 
-                var cellValue = worksheet.GetCellValue(row, 1);
-                if (string.IsNullOrEmpty(cellValue))
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    break; // 如果第一列的值为空，结束读取
+                    IWorkbook workbook = application.Workbooks.Open(fs);
+                    IWorksheet sheet = workbook.Worksheets["FailureModes"]; // 读取第一个 sheet
+
+                    int rowCount = sheet.Rows.Length; // 或用 sheet.UsedRange.LastRow
+
+                    for (int i = 2; i <= sheet.UsedRange.LastRow; i++) // skip header
+                    {
+                        string value = sheet.Range[i, 1].Value; // A列就是第1列
+                        firstColumn.Add(value);
+                    }
                 }
-
-                list.Add(cellValue);
-                row++;
-
             }
-            return list;
+            return firstColumn;
         }
+
 
         public bool IsFailureModeValidate(string failureMode)
         {
-            var failures = GetFailureModes();
+            var failures = GetFailureModes(configurationFileName);
             return failures.Contains(failureMode);
         }
 
@@ -174,41 +153,49 @@ namespace PDMS.Facade
         }
 
 
-        public byte[] GetExcelReportMemory(List<FailureRecord> records)
-        {
-            using (XLWorkbook workbook = new XLWorkbook())
-            {
-                var ws = workbook.AddWorksheet("FailureRecords");
+        
 
-                // 添加标题
-                ws.Cell(1, 1).Value = "Id";
-                ws.Cell(1, 2).Value = "SerialNumber";
-                ws.Cell(1, 3).Value = "ProductFamily";
-                ws.Cell(1, 4).Value = "ProductName";
-                ws.Cell(1, 5).Value = "ProductType";
-                ws.Cell(1, 6).Value = "WorkStepProcessName";
-                ws.Cell(1, 7).Value = "FailureMode";
-                ws.Cell(1, 8).Value = "Status";
-                ws.Cell(1, 9).Value = "CreateUserName";
-                ws.Cell(1, 10).Value = "CreateTime";
-                ws.Cell(1, 11).Value = "ModifyUserName";
-                ws.Cell(1, 12).Value = "ModifyTime";
-                ws.Cell(1, 13).Value = "Comment";
+        public byte[] GetSyncFusionExcelReportMemory(List<FailureRecord> records)
+        {
+            using (ExcelEngine excelEngine = new ExcelEngine())
+            {
+                IApplication application = excelEngine.Excel;
+                application.DefaultVersion = ExcelVersion.Xlsx;
+
+                // 2. 新建工作簿
+                IWorkbook workbook = application.Workbooks.Create(1);
+                IWorksheet sheet = workbook.Worksheets[0];
+                sheet.Name = "FailureRecords";
+
+                // 3. 写入数据
+                sheet.Range[1, 1].Value = "Id";
+                sheet.Range[1, 2].Value = "SerialNumber";
+                sheet.Range[1, 3].Value = "ProductFamily";
+                sheet.Range[1, 4].Value = "ProductName";
+                sheet.Range[1, 5].Value = "ProductType";
+                sheet.Range[1, 6].Value = "WorkStepProcessName";
+                sheet.Range[1, 7].Value = "FailureMode";
+                sheet.Range[1, 8].Value = "Status";
+                sheet.Range[1, 9].Value = "CreateUserName";
+                sheet.Range[1, 10].Value = "CreateTime";
+                sheet.Range[1, 11].Value = "ModifyUserName";
+                sheet.Range[1, 12].Value = "ModifyTime";
+                sheet.Range[1, 13].Value = "Comment";
 
                 // 添加数据
                 for (int i = 0; i < records.Count; i++)
                 {
                     var r = records[i];
                     int row = i + 2; // 数据从第二行开始
-                    ws.Cell(row, 1).Value = r.Id;
-                    ws.Cell(row, 2).Value = r.SerialNumber;
-                    ws.Cell(row, 3).Value = r.ProductFamily;
-                    ws.Cell(row, 4).Value = r.ProductName;
-                    ws.Cell(row, 5).Value = r.ProductType;
-                    ws.Cell(row, 6).Value = r.WorkStepProcessName;
-                    ws.Cell(row, 7).Value = r.FailureMode;
+                    sheet.Range[row, 1].Value = r.Id.ToString();
+                    sheet.Range[row, 2].Value = r.SerialNumber;
+                    sheet.Range[row, 3].Value = r.ProductFamily;
+                    sheet.Range[row, 4].Value = r.ProductName;
+                    sheet.Range[row, 5].Value = r.ProductType;
+                    sheet.Range[row, 6].Value = r.WorkStepProcessName;
+                    sheet.Range[row, 7].Value = r.FailureMode;
                     // Status设置值和字体颜色
-                    var statusCell = ws.Cell(row, 8);
+                    var statusCell = sheet.Range[row, 8];
                     statusCell.Value = r.Status;
                     if (string.Equals(r.Status, "", StringComparison.OrdinalIgnoreCase))
                     {
@@ -216,41 +203,43 @@ namespace PDMS.Facade
                     }
                     else if (string.Equals(r.Status, "PASS", StringComparison.OrdinalIgnoreCase))
                     {
-                        statusCell.Style.Font.FontColor = XLColor.Green;
+                        statusCell.CellStyle.Font.Color = ExcelKnownColors.Green;
                     }
                     else if (string.Equals(r.Status, "FAIL", StringComparison.OrdinalIgnoreCase))
                     {
-                        statusCell.Style.Font.FontColor = XLColor.Red;
+                        statusCell.CellStyle.Font.Color = ExcelKnownColors.Red;
                     }
                     else if (string.Equals(r.Status, "QUARANTINE", StringComparison.OrdinalIgnoreCase))
                     {
-                        statusCell.Style.Font.FontColor = XLColor.Purple;
+                        statusCell.CellStyle.Font.Color = ExcelKnownColors.Violet;
                     }
                     else if (string.Equals(r.Status, "REWORK", StringComparison.OrdinalIgnoreCase))
                     {
-                        statusCell.Style.Font.FontColor = XLColor.Blue;
+                        statusCell.CellStyle.Font.Color = ExcelKnownColors.Blue;
                     }
                     else
                     {
-                        statusCell.Style.Font.FontColor = XLColor.Orange; // 黄色字体
+                        statusCell.CellStyle.Font.Color = ExcelKnownColors.Orange;
                     }
-                    ws.Cell(row, 9).Value = r.CreateUserName;
-                    ws.Cell(row, 10).Value = r.CreateTime;
-                    ws.Cell(row, 11).Value = r.ModifyUserName;
-                    ws.Cell(row, 12).Value = r.ModifyTime;
-                    ws.Cell(row, 13).Value = r.Comment;
+                    sheet.Range[row, 9].Value = r.CreateUserName;
+                    sheet.Range[row, 10].Value = r.CreateTime.ToString("yyyy-MM-dd HH:mm:ss") ;
+                    sheet.Range[row, 11].Value = r.ModifyUserName;
+                    sheet.Range[row, 12].Value = r.ModifyTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    sheet.Range[row, 13].Value = r.Comment;
                 }
 
-                // 可选：自动调整列宽
-                ws.Columns().AdjustToContents();
+                sheet.UsedRange.AutofitColumns();
 
-                // 保存 Excel 文件到内存流
-                using (var memoryStream = new MemoryStream())
+                byte[] data;
+                using (MemoryStream memoryStream = new MemoryStream())
                 {
                     workbook.SaveAs(memoryStream);
-                    return memoryStream.ToArray();
+                    data = memoryStream.ToArray();
                 }
+                return data;
             }
+
+            
         }
     }
 

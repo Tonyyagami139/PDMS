@@ -16,6 +16,8 @@ namespace PDMS
         [STAThread]
         static void Main()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzkxNTExMEAzMjM5MmUzMDJlMzAzYjMyMzkzYmw3NTF3U1U1ZC9ibHY3b3hqVVdmTjJwVVBUKzcvS1ZrOTZmOEozWC9sL3c9");
+
             bool createdNew;
             using (var mutex = new Mutex(true, MutexName, out createdNew))
             {

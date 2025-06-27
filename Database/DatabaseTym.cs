@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,8 @@ namespace Database
         public DatabaseTym()
         {
             //msh = new DbTool.MySqlHelper("192.168.31.140", "production", "tym", "20160718");
-            msh = new MySqlHelper("192.168.31.140", "production", "tym_measure", "Measure20160718");
+            //msh = new MySqlHelper("192.168.31.140", "production", "tym_measure", "Measure20160718");
+            msh = new MySqlHelper("192.168.31.140", "production", "zTxTest", "Zhang1121");
             fh = new FtpHelper("192.168.31.140", 210, "tym", "20160718");
         }
         public bool Connect()
@@ -52,7 +55,9 @@ namespace Database
 
         public DataTable RunStorageProcedure(string storageProcName, object[] paras)
         {
-            throw new NotImplementedException();
+
+            var parameters = (MySqlParameter[])paras;
+            return msh.RunStorageProcedure(storageProcName, parameters);
         }
     }
 }

@@ -55,18 +55,22 @@ namespace Dal
             return dataTable.AsEnumerable().Select(row => row[0].ToString()).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
         }
 
-        public List<string> GetFullProcessJson(FailureRecord failureRecord)
+        public List<ProcessKeyName> GetProcessesBySn(string serial)
         {
-            var fullProcessJson = failureRecordBll.GetFullProcessJson(failureRecord);
-            var processKeyName = JsonHelper.DeserializeObject<List<ProcessKeyName>>(fullProcessJson);
-            if (fullProcessJson == null)
+            var dt = failureRecordBll.GetFullProcessJsonBySn(serial);
+            //将dt中的第一列和第二列转换为ProcessKeyName对象的列表
+
+            if (dt == null || dt.Rows.Count == 0)
             {
-                return new List<string>();
+                return new List<ProcessKeyName>();
             }
-            else
+
+            return dt.AsEnumerable().Select(row => new ProcessKeyName
             {
-                return processKeyName.Select(x => x.Name).ToList();
-            }
+                Key = row[1].ToString(),
+                Name = row[0].ToString()
+            }).ToList();
+          
         }
 
         public Dictionary<string, string> ReadPathItem(FailureRecord failureRecord)
@@ -119,7 +123,13 @@ namespace Dal
                 return false;
             }
         }
-
+        public bool IsSnValid(string serial)
+        {
+            var dt =  failureRecordBll.IsSnValid(serial);
+            bool exists = dt.Rows.Count > 0
+            && Convert.ToInt32(dt.Rows[0]["is_exists"]) == 1;
+            return exists;
+        }
         public List<FailureRecord> GetFailureRecords(string sql="")
         {
             string query = sql;
@@ -147,7 +157,19 @@ namespace Dal
             }
         }
 
-
+        public string GetFullTreePathBySn(string sn)
+        {
+            var dt = failureRecordBll.GetFullTreeTableBySn(sn);
+            if (dt.Rows.Count > 0 && dt.Columns.Contains("full_tree"))
+            {
+                return dt.Rows[0]["full_tree"]?.ToString() ?? string.Empty;
+            }
+            else
+            {
+                // 没查到就返回空字符串或根据需要抛异常
+                return string.Empty;
+            }
+        }
         public FailureRecord GetFailureRecordBySn(string sn)
         { 
             string sql = "SELECT * FROM FailureRecord WHERE SerialNumber = @SerialNumber";
